@@ -51,6 +51,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="FallHitbox" parent="." index="10"]
+collision_layer = 1
+collision_mask = 1
+
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
 [connection signal="timeout" from="Timer_charging" to="." method="_on_Timer_charging_timeout"]
