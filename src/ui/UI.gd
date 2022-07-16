@@ -19,6 +19,10 @@ func set_next_combo_face(face_number):
 	combo.set_next_combo_face(faces[face_number-1])
 
 
+func trigger_combo():
+	combo.trigger_combo()
+
+
 func set_current_faces(main, behind, front, left, right, down):
 	diceFaces.set_current_faces(main, behind, front, left, right, down)
 
@@ -29,3 +33,6 @@ func set_health(health):
 
 func _on_ComboButton_button_up():
 	set_next_combo_face(5)
+
+func _on_FinishButton_button_up():
+	trigger_combo()
