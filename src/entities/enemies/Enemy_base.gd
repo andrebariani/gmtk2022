@@ -2,13 +2,15 @@ extends KinematicBody2D
 
 onready var Player = get_parent().get_node("Player")
 onready var collision_shape = $CollisionShape2D.shape
+onready var knockback_timer = $Knockback_timer
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
-enum {NORMAL, KNOCKBACK}
+enum {NORMAL, KNOCKBACK, STOP}
 var color
 var movement_status = NORMAL
 var protections = 0
+var knockback_vector
 
 signal enemy_died(enemy)
 
