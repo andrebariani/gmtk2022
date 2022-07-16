@@ -8,7 +8,8 @@ func begin():
 	if !e.enablers.roll:
 		end(stateMachine.state_last)
 		return
-		
+	
+	e.spawn_dust(3)
 	e.timers.roll.value = 0
 	
 	e.current_speed = e.roll_speed

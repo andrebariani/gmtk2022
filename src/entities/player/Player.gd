@@ -30,6 +30,8 @@ var is_rolling = false
 export (int) var CHARGE_SPEED = 3000
 onready var charge_speed = CHARGE_SPEED
 
+export(PackedScene) var dust
+
 var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
@@ -157,6 +159,15 @@ func approach(a, b, amount):
 		if(a < b):
 			return b
 	return a
+
+
+
+func spawn_dust(dust_size, pos_rand = 10):
+	var dust_instance = dust.instance()
+	get_parent().add_child(dust_instance)
+	dust_instance.scale = Vector2(dust_size, dust_size)
+	dust_instance.global_position = global_position + Vector2(
+		rand_range(-pos_rand, pos_rand), rand_range(-pos_rand, pos_rand))
 
 
 func _on_Roll_rolled(direction):
