@@ -7,6 +7,7 @@ export(Array, Texture) var faces
 onready var healthbar = $Healthbar
 onready var combo = $Combo
 onready var diceFaces = $DiceFaces
+onready var scoreLabel = $Score/Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +30,10 @@ func set_current_faces(main, behind, front, left, right, down):
 
 func set_health(health):
 	healthbar.set_health(health)
+
+
+func set_score(score):
+	scoreLabel.text = str(score)
 
 
 func _on_ComboButton_button_up():
