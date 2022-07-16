@@ -1,16 +1,21 @@
 extends Control
+class_name UI
 
+export var debug = true
+export(Array, Texture) var faces
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var healthbar = $Healthbar
+onready var combo = $Combo
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$HealthButton.visible = debug
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func set_next_combo_face(face_number):
+	combo.texture = faces[face_number-1]
+
+
+func set_health(health):
+	healthbar.set_health(health)

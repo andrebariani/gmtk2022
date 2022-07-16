@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/entities/state_machine/StateMachine.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://src/ui/UI.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
 "PlayerTimer": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"UI": ""
 }
 
 [application]
