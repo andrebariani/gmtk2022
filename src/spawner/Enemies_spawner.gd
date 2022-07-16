@@ -1,9 +1,8 @@
 extends Node2D
 
-const SPAWN_WIDTH = 5500  # Largura a partir do player para spawn de inimigos (player centralizado)
-const SPAWN_HEIGHT = 3250  # Altura a partir do player para spawn de inimigos (player centralizado)
-const EXTRA_SPACE = 150  # Inimigos não podem spawnar no campo de visão do player + EXTRA_SPACE
-const SPAWN_DELAY = 10
+var spawn_width
+var spawn_height
+const SPAWN_DELAY = 1
 
 onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")
@@ -13,7 +12,8 @@ var support_enemies = [
 	preload('res://src/entities/enemies/Protector_enemy.tscn')
 ]
 var attack_enemies = [
-	preload('res://src/entities/enemies/Ranged_enemy.tscn')
+	preload('res://src/entities/enemies/Ranged_enemy.tscn'),
+	preload('res://src/entities/enemies/Melee_enemy.tscn')
 ]
 
 var game_time = 0
@@ -25,8 +25,10 @@ func _ready():
 	rng.randomize()
 	
 	# Definindo o tamanho do spawn blocker para que inimigos não spawnem no campo de visão do player + EXTRA_SPACE
-	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width")
-	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height")
+	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width") / 3
+	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height") / 3
+	spawn_width = $Spawn_area/CollisionShape2D.shape.extents.x * 2
+	spawn_height = $Spawn_area/CollisionShape2D.shape.extents.y * 2
 	
 	spawn_enemies()
 
@@ -64,10 +66,10 @@ func get_random_position(enemy_colision_shape):
 	var space_state = get_world_2d().direct_space_state
 	
 	while true: # Enquanto a posição aleatória não for livre, irá ficar sorteando uma nova.
-		var random_pos = player.position + Vector2(rng.randf_range(-SPAWN_WIDTH/2,SPAWN_WIDTH/2), rng.randf_range(-SPAWN_HEIGHT/2,SPAWN_HEIGHT/2))
+		var random_pos = Vector2(rng.randf_range(-spawn_width/2,spawn_width/2), rng.randf_range(-spawn_height/2,spawn_height/2))
 		
 		var query = Physics2DShapeQueryParameters.new()
-		query.collision_layer = 0b00000000001010000111
+		query.collision_layer = 0b00000001000000000000
 		query.collide_with_areas = true
 		query.set_shape(enemy_colision_shape)
 		query.set_transform(Transform2D(0, random_pos))

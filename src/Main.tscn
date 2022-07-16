@@ -48,8 +48,6 @@ position = Vector2( -551, -372 )
 [node name="Ranged_enemy" parent="YSort" instance=ExtResource( 8 )]
 position = Vector2( 842, -467 )
 
-[node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScreenShaders" parent="CanvasLayer" instance=ExtResource( 3 )]
@@ -59,8 +57,18 @@ pause_mode = 2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
+[node name="Protector_enemy" parent="." instance=ExtResource( 9 )]
+position = Vector2( -392, -371 )
+
+[node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
+
+[node name="CollisionShape2D" parent="Enemies_spawner/Area2D" index="0"]
+position = Vector2( -0.5, -5.5 )
+
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="died" from="YSort/Player" to="." method="_on_Player_died"]
 [connection signal="health_changed" from="YSort/Player" to="." method="_on_Player_health_changed"]
 [connection signal="rolled" from="YSort/Player" to="." method="_on_Player_rolled"]
 [connection signal="triggered_combo" from="YSort/Player" to="." method="_on_Player_triggered_combo"]
+
+[editable path="Enemies_spawner"]
