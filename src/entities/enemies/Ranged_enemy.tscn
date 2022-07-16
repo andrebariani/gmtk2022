@@ -2,30 +2,33 @@
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/Ranged_enemy.gd" type="Script" id=2]
-[ext_resource path="res://src/entities/enemies/LG-bullet-power.png" type="Texture" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 13.0
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 29.5, 30 )
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 13.0384
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 29.5, 30.25 )
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 250.0
+radius = 300.167
 
 [node name="Ranged_enemy" instance=ExtResource( 1 )]
+scale = Vector2( 2, 2 )
 collision_mask = 6
 script = ExtResource( 2 )
-speed = 5000.0
+speed = 10000.0
 color_number = 1
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" parent="." index="1"]
+position = Vector2( 0, 1 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2( -0.5, 1.25 )
 shape = SubResource( 3 )
 
 [node name="Range" type="Area2D" parent="." index="4"]

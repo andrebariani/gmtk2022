@@ -9,17 +9,20 @@ onready var Bullet = preload("res://src/entities/enemies/Bullet.tscn")
 
 
 func on_process(delta):
+	movimentation(delta)
+	if movement_status == KNOCKBACK:
+		return
+	
 	if aiming:
 		if not is_path_to_player_free():
+			movement_status = NORMAL
 			$Timer_shoot.stop()
 			aiming = false
 	elif in_range:
 		if is_path_to_player_free():
+			movement_status = STOP
 			$Timer_shoot.start()
 			aiming = true
-		movimentation(delta)
-	else:
-		movimentation(delta)
 
 
 func is_path_to_player_free():
@@ -37,10 +40,14 @@ func _on_Range_body_exited(_body):
 	in_range = false
 
 func _on_Timer_shoot_timeout():
-	shoot()
+	if movement_status != KNOCKBACK:
+		shoot()
+	
 	if not in_range:
 		aiming = false
 		$Timer_shoot.stop()
+		if movement_status != KNOCKBACK:
+			movement_status = NORMAL
 
 func shoot():
 	# shoot_animation.play("Shoot")

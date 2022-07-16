@@ -38,6 +38,7 @@ func before_end(_next_state: String):
 
 func _on_Hitbox_area_entered(area):
 	if area.has_method("take_damage"):
+		print('oi')
 		area.take_damage(e.current_enemy_type)
 	
 	if area.has_method("take_knockback"):

@@ -13,7 +13,7 @@ var support_enemies = [
 	preload('res://src/entities/enemies/Protector_enemy.tscn')
 ]
 var attack_enemies = [
-	
+	preload('res://src/entities/enemies/Ranged_enemy.tscn')
 ]
 
 var game_time = 0
@@ -38,11 +38,17 @@ func _on_Timer_timeout():
 	$Timer.start(SPAWN_DELAY)
 
 func spawn_enemies():
-	while current_spawn_points != 0:
-		var selected = enemies[rng.randi_range(0, get_possible_enemies_max_range(current_spawn_points))]
-		current_spawn_points -= selected["spawn_points_cost"]
-		spawn_enemy(selected['enemy'])
-		qnt_enemies_alive += 1
+	var qnt_attack_enemies = round(game_time / 30) + 2
+	var qnt_support_enemies = round(game_time / 60)
+	qnt_enemies_alive += qnt_attack_enemies + qnt_support_enemies
+	
+	for i in range(qnt_attack_enemies):
+		var selected = attack_enemies[rng.randi_range(0, len(attack_enemies) - 1)]
+		spawn_enemy(selected)
+	
+	for i in range(qnt_support_enemies):
+		var selected = support_enemies[rng.randi_range(0, len(support_enemies) - 1)]
+		spawn_enemy(selected)
 
 func spawn_enemy(Enemy):
 	var enemy = Enemy.instance()
