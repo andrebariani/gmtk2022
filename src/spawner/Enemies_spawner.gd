@@ -8,6 +8,9 @@ onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")
 onready var rng = RandomNumberGenerator.new()
 
+export(NodePath) var ysort_path
+onready var ysort = get_node(ysort_path)
+
 var support_enemies = [
 	preload('res://src/entities/enemies/Protector_enemy.tscn')
 ]
@@ -54,7 +57,7 @@ func spawn_enemies():
 
 func spawn_enemy(Enemy):
 	var enemy = Enemy.instance()
-	get_parent().call_deferred("add_child", enemy)
+	ysort.call_deferred("add_child", enemy)
 	enemy.position = get_random_position(enemy.get_node("CollisionShape2D").shape)
 	enemy.connect("enemy_died", self, "_on_enemy_death", [enemy])
 
