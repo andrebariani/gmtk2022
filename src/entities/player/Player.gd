@@ -40,7 +40,7 @@ onready var hitbox = $Hitbox
 onready var _invincibleTimer = $InvincibleTimer
 onready var _pointer = $Pointer
 onready var _sprite = $Sprite
-onready var _hurtbox = $Hurtbox
+onready var hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
@@ -103,7 +103,7 @@ func take_damage():
 		return
 	
 	_sprite.blink_anim()
-	_hurtbox.call_deferred("disabled", true)
+	hurtbox.call_deferred("disabled", true)
 	_invincibleTimer.start(INVINCIBLE_DURATION)
 	
 	set_health(health - 1)
@@ -192,4 +192,4 @@ func _on_Charge_enemy_killed():
 
 func _on_InvincibleTimer_timeout():
 	_sprite.stop_anim()
-	_hurtbox.call_deferred("disabled", false)
+	hurtbox.call_deferred("disabled", false)
