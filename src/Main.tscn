@@ -13,6 +13,7 @@ script = ExtResource( 5 )
 
 [node name="Camera" parent="Player" instance=ExtResource( 2 )]
 current = true
+zoom = Vector2( 2, 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

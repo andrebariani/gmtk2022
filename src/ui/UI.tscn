@@ -105,7 +105,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Top" type="TextureRect" parent="MainFace"]
+[node name="Behind" type="TextureRect" parent="MainFace"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -121,7 +121,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="TextureRect" parent="MainFace"]
+[node name="Front" type="TextureRect" parent="MainFace"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
