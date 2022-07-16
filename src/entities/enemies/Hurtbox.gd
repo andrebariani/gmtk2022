@@ -13,4 +13,3 @@ func take_knockback(knockback_vector):
 	enemy.knockback_timer.start()
 	enemy.movement_status = enemy.KNOCKBACK
 	enemy.knockback_vector = knockback_vector
-	print(enemy.knockback_vector.length())

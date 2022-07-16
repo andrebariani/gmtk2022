@@ -11,6 +11,7 @@ onready var Bullet = preload("res://src/entities/enemies/Bullet.tscn")
 func on_process(delta):
 	movimentation(delta)
 	if movement_status == KNOCKBACK:
+		aiming = false
 		return
 	
 	if aiming:

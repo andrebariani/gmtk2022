@@ -25,8 +25,8 @@ func _ready():
 	rng.randomize()
 	
 	# Definindo o tamanho do spawn blocker para que inimigos não spawnem no campo de visão do player + EXTRA_SPACE
-	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width") / 2 + EXTRA_SPACE
-	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height") / 2 + EXTRA_SPACE
+	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width")
+	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height")
 	
 	spawn_enemies()
 
