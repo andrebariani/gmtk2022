@@ -6,7 +6,7 @@ onready var knockback_timer = $Knockback_timer
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
-enum {NORMAL, KNOCKBACK, STOP}
+enum {NORMAL, KNOCKBACK, STOP, CHARGING, CHARGE}
 var color
 var movement_status = NORMAL
 var protections = 0

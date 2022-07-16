@@ -32,7 +32,7 @@ position = Vector2( -0.5, 1.25 )
 shape = SubResource( 3 )
 
 [node name="Range" type="Area2D" parent="." index="4"]
-collision_mask = 0
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]
 shape = SubResource( 1 )
