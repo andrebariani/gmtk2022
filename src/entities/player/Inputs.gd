@@ -39,7 +39,7 @@ func get_inputs():
 		inputs.dirv = inputs.dirv.normalized()
 	
 	if inputs.dirv != Vector2.ZERO:
-		p.ori = inputs.dirv.normalized()
+		p.ori = inputs.dirv
 
 	for just_pressed_input in just_pressed_inputs:
 		if Input.is_action_just_pressed(just_pressed_input):

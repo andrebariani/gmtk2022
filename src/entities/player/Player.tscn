@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -7,17 +7,18 @@
 [ext_resource path="res://src/entities/player/states/Roll.gd" type="Script" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/player/Inputs.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/player/DieFace.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58, 59 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-WALK_SPEED = 6000
-ROLL_SPEED = 12000
+WALK_SPEED = 30000
+ROLL_SPEED = 60000
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 1.8125, 1.82813 )
+scale = Vector2( -1.76057, 1.84375 )
 texture = ExtResource( 6 )
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
@@ -26,6 +27,9 @@ shape = SubResource( 1 )
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource( 7 )
 just_pressed_inputs = [ "roll" ]
+
+[node name="DieFaces" type="Node" parent="."]
+script = ExtResource( 8 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 1 )
@@ -38,3 +42,26 @@ script = ExtResource( 3 )
 
 [node name="Roll" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -14.0
+
+[node name="State" type="Label" parent="CanvasLayer/Debug"]
+margin_right = 1024.0
+margin_bottom = 14.0
+
+[node name="DieSide" type="Label" parent="."]
+margin_left = -58.0
+margin_top = -79.0
+margin_right = 59.0
+margin_bottom = -64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]

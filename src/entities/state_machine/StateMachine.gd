@@ -32,6 +32,8 @@ func run(_delta):
 
 
 func change_state(new_state: String):
+	print_debug(new_state)
+	print_debug(state_curr)
 	if states.has(new_state) and new_state != state_curr:
 		state_next = new_state
 		if entity.has_method("setup_state_queue"):

@@ -1,0 +1,811 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://assets/sprites/ui/MenuButtonPressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/ui/MenuButton.png" type="Texture" id=2]
+[ext_resource path="res://src/ui/menu/MainMenu.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/ui/MenuButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
+[ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Hover"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Hover"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hover"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 163.0, 163.0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "OptionsClose"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Options:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Options:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Options:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Options:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "StagesClose"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Levels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Levels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Levels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Levels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Levels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Levels:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Main Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = -204.266
+margin_bottom = -48.2662
+grow_horizontal = 2
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gamemodes" type="HBoxContainer" parent="Menu"]
+margin_top = 8.0
+margin_right = 128.0
+margin_bottom = 40.0
+size_flags_vertical = 6
+custom_constants/separation = 15
+alignment = 1
+
+[node name="Tutorial" type="TextureButton" parent="Menu/Gamemodes"]
+visible = false
+margin_right = 128.0
+margin_bottom = 32.0
+size_flags_horizontal = 5
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+script = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Gamemodes/Tutorial"]
+anims/Hover = SubResource( 1 )
+
+[node name="Tween" type="Tween" parent="Menu/Gamemodes/Tutorial"]
+
+[node name="Label" type="Label" parent="Menu/Gamemodes/Tutorial"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Tutorial"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="TextureButton" parent="Menu/Gamemodes"]
+margin_right = 128.0
+margin_bottom = 32.0
+size_flags_horizontal = 5
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+script = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Gamemodes/Play"]
+anims/Hover = SubResource( 16 )
+
+[node name="Tween" type="Tween" parent="Menu/Gamemodes/Play"]
+
+[node name="Label" type="Label" parent="Menu/Gamemodes/Play"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Play"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="TextureButton" parent="Menu"]
+margin_top = 61.0
+margin_right = 128.0
+margin_bottom = 93.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+script = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Options"]
+anims/Hover = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="Menu/Options"]
+
+[node name="Label" type="Label" parent="Menu/Options"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Options"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="Menu"]
+margin_top = 114.0
+margin_right = 128.0
+margin_bottom = 146.0
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+script = ExtResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Menu/Quit"]
+anims/Hover = SubResource( 3 )
+
+[node name="Tween" type="Tween" parent="Menu/Quit"]
+
+[node name="Label" type="Label" parent="Menu/Quit"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Quit"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Control" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 642.0
+margin_top = -234.0
+margin_right = -62.0004
+margin_bottom = -52.0002
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sound" type="HSlider" parent="Options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -59.9998
+margin_top = 50.0
+margin_right = 60.0002
+margin_bottom = 66.0
+max_value = 40.0
+value = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Options/Sound"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_top = -20.0
+margin_right = 100.0
+margin_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sound"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Music" type="HSlider" parent="Options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_top = 100.0
+margin_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 120, 0 )
+max_value = 40.0
+value = 20.0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+group = "BGM"
+
+[node name="Label" type="Label" parent="Options/Music"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -100.0
+margin_top = -20.0
+margin_right = 100.0
+margin_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Close" type="TextureButton" parent="Options"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -62.9999
+margin_top = 141.0
+margin_right = 65.0001
+margin_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 4 )
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Options/Close"]
+anims/Hover = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="Options/Close"]
+
+[node name="Label" type="Label" parent="Options/Close"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Close"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Levels" type="Control" parent="."]
+visible = false
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -36.2048
+margin_top = -186.155
+margin_right = -740.205
+margin_bottom = -4.15485
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stages" type="Label" parent="Levels"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -107.785
+margin_top = 34.8182
+margin_right = 92.2153
+margin_bottom = 51.8182
+grow_horizontal = 2
+grow_vertical = 2
+text = "Stages"
+align = 1
+valign = 1
+
+[node name="CloseLevel" type="TextureButton" parent="Levels"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -64.7491
+margin_top = 116.02
+margin_right = 63.2509
+margin_bottom = 148.02
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Levels/CloseLevel"]
+anims/Hover = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="Levels/CloseLevel"]
+
+[node name="Label" type="Label" parent="Levels/CloseLevel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+text = "Close"
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Levels"]
+margin_left = 77.4648
+margin_top = 44.5892
+margin_right = 234.465
+margin_bottom = 112.589
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseT" type="TextureButton" parent="Levels/HBoxContainer"]
+margin_left = 2.0
+margin_top = 17.0
+margin_right = 34.0
+margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Levels/HBoxContainer/PhaseT"]
+anims/Hover = SubResource( 6 )
+
+[node name="Tween" type="Tween" parent="Levels/HBoxContainer/PhaseT"]
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/PhaseT"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.07138
+margin_top = 0.280609
+margin_right = -3.92862
+margin_bottom = 0.280609
+text = "T"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Phase1" type="TextureButton" parent="Levels/HBoxContainer"]
+margin_left = 42.0
+margin_top = 17.0
+margin_right = 74.0
+margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Levels/HBoxContainer/Phase1"]
+anims/Hover = SubResource( 7 )
+
+[node name="Tween" type="Tween" parent="Levels/HBoxContainer/Phase1"]
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/Phase1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.07138
+margin_top = 0.280609
+margin_right = -3.92862
+margin_bottom = 0.280609
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Phase2" type="TextureButton" parent="Levels/HBoxContainer"]
+margin_left = 82.0
+margin_top = 17.0
+margin_right = 114.0
+margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Levels/HBoxContainer/Phase2"]
+anims/Hover = SubResource( 8 )
+
+[node name="Tween" type="Tween" parent="Levels/HBoxContainer/Phase2"]
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/Phase2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.07138
+margin_top = 0.280609
+margin_right = -3.92862
+margin_bottom = 0.280609
+text = "2"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Phase3" type="TextureButton" parent="Levels/HBoxContainer"]
+margin_left = 122.0
+margin_top = 17.0
+margin_right = 154.0
+margin_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Levels/HBoxContainer/Phase3"]
+anims/Hover = SubResource( 9 )
+
+[node name="Tween" type="Tween" parent="Levels/HBoxContainer/Phase3"]
+
+[node name="Label" type="Label" parent="Levels/HBoxContainer/Phase3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 6.07138
+margin_top = 0.280609
+margin_right = -3.92862
+margin_bottom = 0.280609
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/OptionsClose = SubResource( 10 )
+anims/OptionsOpen = SubResource( 11 )
+anims/OptionsOpenNormal = SubResource( 12 )
+anims/StagesClose = SubResource( 13 )
+anims/StagesOpen = SubResource( 14 )
+anims/StagesOpenNormal = SubResource( 15 )
+
+[node name="bgm" type="AudioStreamPlayer" parent="." groups=["BGM"]]
+autoplay = true
+
+[connection signal="button_up" from="Menu/Gamemodes/Tutorial" to="." method="_on_Tutorial_button_up"]
+[connection signal="button_up" from="Menu/Gamemodes/Play" to="." method="_on_Play_button_up"]
+[connection signal="button_up" from="Menu/Options" to="." method="_on_Options_button_up"]
+[connection signal="button_up" from="Menu/Quit" to="." method="_on_Quit_button_up"]
+[connection signal="button_up" from="Options/Close" to="." method="_on_Close_button_up"]
+[connection signal="button_up" from="Levels/CloseLevel" to="." method="_on_CloseLevel_button_up"]
+[connection signal="button_up" from="Levels/HBoxContainer/PhaseT" to="." method="_on_PhaseT_button_up"]
+[connection signal="button_up" from="Levels/HBoxContainer/Phase1" to="." method="_on_Phase1_button_up"]
+[connection signal="button_up" from="Levels/HBoxContainer/Phase2" to="." method="_on_Phase2_button_up"]
+[connection signal="button_up" from="Levels/HBoxContainer/Phase3" to="." method="_on_Phase3_button_up"]
