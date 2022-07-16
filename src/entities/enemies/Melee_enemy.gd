@@ -18,7 +18,7 @@ func on_process(delta):
 			movement_status = CHARGING
 			$Timer_charging.start()
 	elif movement_status == CHARGING:
-		move_and_slide(-global_position.direction_to(Player.global_position) * speed * delta)
+		move_and_slide(-global_position.direction_to(Player.global_position) * speed * delta / 100)
 	elif movement_status == CHARGE:
 		move_and_slide(charge_direction * speed * delta * charge_mult)
 
@@ -41,10 +41,3 @@ func _on_Timer_charge_timeout():
 		$Hitbox/CollisionShape2D.disabled = true
 		movement_status = NORMAL
 		
-
-
-func _on_Hitbox_body_entered(body):
-	if body.has_method("take_damage"):
-		body.take_damage()
-	if body.has_method("take_knockback"):
-		body.take_knockback(charge_direction * speed/4)

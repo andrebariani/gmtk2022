@@ -8,4 +8,9 @@ func movimentation(delta):
 		var mult = $Knockback_timer.time_left / $Knockback_timer.wait_time
 		var collision = move_and_collide((knockback_vector * mult) * delta / 100)
 		if collision:
+			if "enemy" in collision.collider.name:
+				collision.collider.take_knockback(knockback_vector * mult)
+				$Knockback_timer.stop()
+				movement_status = NORMAL
+				return
 			knockback_vector = knockback_vector.bounce(collision.normal)

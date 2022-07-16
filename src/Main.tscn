@@ -44,6 +44,21 @@ position = Vector2( 613, -13 )
 collision_layer = 2
 collision_mask = 518
 
+[node name="Melee_enemy2" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 551, 335 )
+collision_layer = 2
+collision_mask = 518
+
+[node name="Melee_enemy3" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 316, 310 )
+collision_layer = 2
+collision_mask = 518
+
+[node name="Melee_enemy4" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 339, -71 )
+collision_layer = 2
+collision_mask = 518
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 1
 
