@@ -15,3 +15,7 @@ func _on_Player_rolled(direction):
 		faces.get_face(Constants.DOWN))
 	
 	camera.shake_camera(80)
+
+
+func _on_Player_health_changed(value):
+	ui.set_health(value)
