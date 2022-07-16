@@ -1,4 +1,5 @@
 extends Node
+class_name DieFaces
 
 const FACE_ENEMIES = [Constants.MELEE, Constants.RANGED, Constants.SUPPORT,
 					Constants.MELEE, Constants.RANGED, Constants.SUPPORT]

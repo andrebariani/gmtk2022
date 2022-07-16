@@ -52,9 +52,9 @@ position = Vector2( 842, -467 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
-
 [node name="ScreenShaders" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
