@@ -6,6 +6,7 @@ onready var shaders = $CanvasLayer/ScreenShaders
 onready var player = $YSort/Player
 onready var camera = $YSort/Player/Camera
 
+var score = 0
 
 func _enter_tree():
 	randomize()
@@ -38,4 +39,5 @@ func _on_Player_triggered_combo():
 
 
 func _on_Player_died():
-	pass # Replace with function body.
+	get_tree().paused = true
+	shaders.game_over(player.get_global_transform_with_canvas().origin / get_viewport_rect().size)
