@@ -13,6 +13,10 @@ func _enter_tree():
 	PlayerReference.set_player($YSort/Player)
 
 
+func _ready():
+	Input.set_custom_mouse_cursor(GlobalNode.game_mouse)
+
+
 func _on_Player_rolled(_direction):
 	var faces : DieFaces = player.dieFaces
 	ui.set_current_faces(faces.get_face(Constants.TOP), 
