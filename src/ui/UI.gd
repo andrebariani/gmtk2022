@@ -18,11 +18,11 @@ func set_next_combo_face(face_number):
 
 
 func set_current_faces(main, top, bottom, left, right):
-	$MainFace.texture = main
-	$MainFace/Top.texture = top
-	$MainFace/Bottom.texture = bottom
-	$MainFace/Left.texture = left
-	$MainFace/Right.texture = right
+	$MainFace.texture = faces[main]
+	$MainFace/Top.texture = faces[top]
+	$MainFace/Bottom.texture = faces[bottom]
+	$MainFace/Left.texture = faces[left]
+	$MainFace/Right.texture = faces[right]
 
 
 func set_health(health):

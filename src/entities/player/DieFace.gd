@@ -1,27 +1,10 @@
 extends Node
 
+const FACE_ENEMIES = [Constants.MELEE, Constants.RANGED, Constants.SUPPORT,
+					Constants.MELEE, Constants.RANGED, Constants.SUPPORT]
+
 var faces = [1, 4, 2, 3, 5, 6]
 enum { TOP, LEFT, FRONT, RIGHT, BEHIND, DOWN }
-
-
-func _ready():
-	print_debug(get_current_face())
-	roll_left()
-	print_debug(get_current_face())
-	roll_left()
-	print_debug(get_current_face())
-	roll_down()
-	print_debug(get_current_face())
-	roll_right()
-	print_debug(get_current_face())
-	roll_down()
-	print_debug(get_current_face())
-	roll_down()
-	print_debug(get_current_face())
-	roll_left()
-	print_debug(get_current_face())
-	roll_up()
-	print_debug(get_current_face())
 
 
 func roll_left():
@@ -38,14 +21,12 @@ func roll_down():
 	faces[BEHIND] = f[DOWN]
 	faces[DOWN] = f[FRONT]
 
-
 func roll_right():
 	var f = faces.duplicate()
 	faces[RIGHT] = f[TOP]
 	faces[TOP] = f[LEFT]
 	faces[LEFT] = f[DOWN]
 	faces[DOWN] = f[RIGHT]
-
 
 func roll_up():
 	var f = faces.duplicate()
@@ -55,6 +36,15 @@ func roll_up():
 	faces[DOWN] = f[BEHIND]
 
 
+func get_face(face):
+	return faces[face]
 
 func get_current_face():
-	return faces[TOP]
+	return get_face(TOP)
+
+func get_enemy_type(face):
+	return FACE_ENEMIES[get_face(face)]
+
+func get_current_enemy_type():
+	return get_enemy_type(TOP)
+

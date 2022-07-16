@@ -58,6 +58,7 @@ config/icon="res://icon.png"
 
 Transitions="*res://src/ui/Transitions.tscn"
 GlobalNode="*res://src/global/Global.tscn"
+Constants="*res://src/global/Constants.gd"
 
 [input]
 
