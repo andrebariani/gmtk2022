@@ -29,9 +29,8 @@ func begin():
 
 func run(delta):
 	if orientation.x != 0:
-		e.apply_velocity(orientation.x * delta)
-	else:
-		e.apply_velocity(orientation.y * delta)
+		orientation.y = 0
+	e.apply_velocity(orientation * delta)
 	
 	if e.timers.roll.is_over():
 		if e.get_input('dirv'):

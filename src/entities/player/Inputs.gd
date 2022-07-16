@@ -33,8 +33,8 @@ func get_inputs():
 		return
 	
 	if p.has_dir_control:
-		inputs.dirv.x = Input.get_axis("ui_left", "ui_right")
-		inputs.dirv.y = Input.get_axis("ui_up", "ui_down")
+		inputs.dirv.x = Input.get_axis("move_left", "move_right")
+		inputs.dirv.y = Input.get_axis("move_up", "move_down")
 		
 		inputs.dirv = inputs.dirv.normalized()
 	
