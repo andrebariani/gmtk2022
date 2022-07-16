@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/camera/Camera.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/shaders/burano.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/entities/enemies/Protector_enemy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
 
