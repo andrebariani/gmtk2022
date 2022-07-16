@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/camera/Camera.tscn" type="PackedScene" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://src/Main.gd" type="Script" id=5]
 [ext_resource path="res://src/shaders/burano.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/entities/enemies/Melee_enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/entities/enemies/Protector_enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
 
@@ -23,6 +24,7 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 3
 tile_set = ExtResource( 12 )
 cell_size = Vector2( 32, 32 )
 collision_layer = 4
@@ -33,31 +35,14 @@ tile_data = PoolIntArray( -1179680, 0, 0, -1179679, 0, 2, -1179678, 0, 1, -11796
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
 
+[node name="Protector_enemy" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( -224, 115 )
+
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 
 [node name="Camera" parent="YSort/Player" instance=ExtResource( 2 )]
 current = true
 zoom = Vector2( 2, 2 )
-
-[node name="Melee_enemy" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 613, -13 )
-collision_layer = 2
-collision_mask = 518
-
-[node name="Melee_enemy2" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 551, 335 )
-collision_layer = 2
-collision_mask = 518
-
-[node name="Melee_enemy3" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 316, 310 )
-collision_layer = 2
-collision_mask = 518
-
-[node name="Melee_enemy4" parent="YSort" instance=ExtResource( 8 )]
-position = Vector2( 339, -71 )
-collision_layer = 2
-collision_mask = 518
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 1
