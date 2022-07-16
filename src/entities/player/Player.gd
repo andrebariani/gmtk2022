@@ -25,6 +25,7 @@ var look_vector = Vector2.ZERO
 onready var inputHelper = $Inputs
 onready var stateMachine = $StateMachine
 onready var dieFaces = $DieFaces
+onready var hitbox = $Hitbox
 onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
@@ -42,6 +43,7 @@ var enablers = {
 	charge = true
 }
 
+var current_enemy_type = Constants.MELEE
 var load_amount = 0
 
 
@@ -111,4 +113,14 @@ func approach(a, b, amount):
 
 
 func _on_Roll_rolled(direction):
+	if direction == Constants.LEFT:
+		dieFaces.roll_left()
+	elif direction == Constants.RIGHT:
+		dieFaces.roll_right()
+	elif direction == Constants.BEHIND:
+		dieFaces.roll_up()
+	else:
+		dieFaces.roll_down()
+	
+	current_enemy_type = dieFaces.get_current_enemy_type()
 	emit_signal("rolled", direction)

@@ -12,6 +12,7 @@ func begin():
 	look_vector = (e.get_global_mouse_position() - e.global_position).normalized()
 	e.current_speed = e.charge_speed
 	e.has_dir_control = false
+	e.hitbox.monitoring = true
 	starting_load = e.load_amount
 
 
@@ -31,4 +32,13 @@ func run(delta):
 func before_end(_next_state: String):
 	e.current_speed = e.walk_speed
 	e.has_dir_control = true
+	e.hitbox.monitoring = false
 	e.take_knockback(look_vector * 1500)
+
+
+func _on_Hitbox_area_entered(area):
+	if area.has_method("take_damage"):
+		area.take_damage(e.current_enemy_type)
+	
+	if area.has_method("take_knockback"):
+		area.take_knockback(look_vector * e.current_speed)
