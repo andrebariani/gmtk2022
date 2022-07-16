@@ -13,4 +13,8 @@ func movimentation(delta):
 				$Knockback_timer.stop()
 				movement_status = NORMAL
 				return
+			if "Player" in collision.collider.name:
+				Player.take_knockback(knockback_vector * mult / 300)
+				knockback_vector /= 3
+				$Knockback_timer.start($Knockback_timer.time_left / 3)
 			knockback_vector = knockback_vector.bounce(collision.normal)
