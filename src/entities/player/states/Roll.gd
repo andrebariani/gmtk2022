@@ -1,8 +1,8 @@
 extends State
 
 signal rolled(direction)
-
 var orientation = Vector2.ZERO
+
 
 func begin():
 	if !e.enablers.roll:
@@ -14,6 +14,8 @@ func begin():
 	
 	e.current_speed = e.roll_speed
 	e.has_dir_control = false
+	
+	e.set_collision_mask_bit(1, false)
 	
 	orientation = e.ori
 	if orientation.x < 0:
@@ -41,3 +43,5 @@ func run(delta):
 func before_end(_next_state: String):
 	e.current_speed = e.walk_speed
 	e.has_dir_control = true
+	
+	e.set_collision_mask_bit(1, true)
