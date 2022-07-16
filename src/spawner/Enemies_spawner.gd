@@ -2,7 +2,7 @@ extends Node2D
 
 var spawn_width
 var spawn_height
-const SPAWN_DELAY = 1
+const SPAWN_DELAY = 10
 
 onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")

@@ -6,7 +6,7 @@ onready var knockback_timer = $Knockback_timer
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
-enum {NORMAL, KNOCKBACK, STOP, CHARGING, CHARGE}
+enum {NORMAL, GOING_DOWN, KNOCKBACK, STOP, CHARGING, CHARGE}
 var color
 var movement_status = NORMAL
 var protections = 0
@@ -25,6 +25,8 @@ func _process(delta):
 
 
 func _ready():
+	$AnimationPlayer.play("GOING_DOWN")
+	movement_status = GOING_DOWN
 	color = Constants.enemy_colors[color_number]
 	on_ready()
 
@@ -71,4 +73,7 @@ func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 
 
 func _on_Knockback_timer_timeout():
+	movement_status = NORMAL
+
+func _on_AnimationPlayer_animation_finished(anim_name):
 	movement_status = NORMAL
