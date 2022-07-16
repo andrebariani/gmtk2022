@@ -7,7 +7,7 @@
 [ext_resource path="res://src/Main.gd" type="Script" id=5]
 [ext_resource path="res://src/shaders/burano.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/entities/enemies/Melee_enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/entities/enemies/Protector_enemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
 
@@ -39,9 +39,6 @@ pause_mode = 1
 [node name="Camera" parent="YSort/Player" instance=ExtResource( 2 )]
 current = true
 zoom = Vector2( 2, 2 )
-
-[node name="Melee_enemy" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 542, -20 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 1

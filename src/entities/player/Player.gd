@@ -30,6 +30,8 @@ var is_rolling = false
 export (int) var CHARGE_SPEED = 3000
 onready var charge_speed = CHARGE_SPEED
 
+export(PackedScene) var dust
+
 var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
@@ -40,7 +42,7 @@ onready var hitbox = $Hitbox
 onready var _invincibleTimer = $InvincibleTimer
 onready var _pointer = $Pointer
 onready var _sprite = $Sprite
-onready var _hurtbox = $Hurtbox
+onready var hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
@@ -103,7 +105,7 @@ func take_damage():
 		return
 	
 	_sprite.blink_anim()
-	_hurtbox.call_deferred("disabled", true)
+	hurtbox.call_deferred("disabled", true)
 	_invincibleTimer.start(INVINCIBLE_DURATION)
 	
 	set_health(health - 1)
@@ -159,6 +161,15 @@ func approach(a, b, amount):
 	return a
 
 
+
+func spawn_dust(dust_size, pos_rand = 10):
+	var dust_instance = dust.instance()
+	get_parent().add_child(dust_instance)
+	dust_instance.scale = Vector2(dust_size, dust_size)
+	dust_instance.global_position = global_position + Vector2(
+		rand_range(-pos_rand, pos_rand), rand_range(-pos_rand, pos_rand))
+
+
 func _on_Roll_rolled(direction):
 	if direction == Constants.LEFT:
 		dieFaces.roll_left()
@@ -192,4 +203,4 @@ func _on_Charge_enemy_killed():
 
 func _on_InvincibleTimer_timeout():
 	_sprite.stop_anim()
-	_hurtbox.call_deferred("disabled", false)
+	hurtbox.call_deferred("disabled", false)
