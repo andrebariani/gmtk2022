@@ -3,6 +3,9 @@ class_name Player
 
 signal rolled()
 signal health_changed(value)
+signal enemy_killed()
+signal advanced_combo(face)
+signal triggered_combo()
 signal died()
 
 export var debug = false
@@ -50,6 +53,7 @@ var enablers = {
 }
 
 var current_enemy_type = Constants.MELEE
+var next_combo_face = 1
 var load_amount = 0
 
 
@@ -100,6 +104,7 @@ func set_health(value):
 	health = value
 	emit_signal("health_changed", health)
 
+
 func take_knockback(velocity):
 	knockback += velocity
 	
@@ -143,3 +148,19 @@ func _on_Roll_rolled(direction):
 	
 	current_enemy_type = dieFaces.get_current_enemy_type()
 	emit_signal("rolled", direction)
+
+
+func _on_Charge_enemy_killed():
+	emit_signal("enemy_killed")
+	
+	if dieFaces.get_current_face() == next_combo_face:
+		next_combo_face += 1
+		if next_combo_face == 7:
+			set_health(MAX_HEALTH)
+			emit_signal("triggered_combo")
+			next_combo_face = 1
+		else:
+			emit_signal("advanced_combo", next_combo_face)
+	
+	else:
+		next_combo_face = 1
