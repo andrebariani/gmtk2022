@@ -56,6 +56,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
+PlayerReference="*res://src/global/PlayerReference.gd"
 Transitions="*res://src/ui/Transitions.tscn"
 GlobalNode="*res://src/global/Global.tscn"
 Constants="*res://src/global/Constants.gd"

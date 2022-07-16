@@ -100,6 +100,7 @@ func set_health(value):
 	health = value
 	emit_signal("health_changed", health)
 
+
 func take_knockback(velocity):
 	knockback += velocity
 	
@@ -143,3 +144,7 @@ func _on_Roll_rolled(direction):
 	
 	current_enemy_type = dieFaces.get_current_enemy_type()
 	emit_signal("rolled", direction)
+
+
+func _on_Charge_enemy_killed():
+	print_debug("KILLED")

@@ -2,10 +2,16 @@ extends Node2D
 
 
 onready var ui = $CanvasLayer/UI
-onready var player = $Player
-onready var camera = $Player/Camera
+onready var player = $YSort/Player
+onready var camera = $YSort/Player/Camera
 
-func _on_Player_rolled(direction):
+
+func _enter_tree():
+	randomize()
+	PlayerReference.set_player($YSort/Player)
+
+
+func _on_Player_rolled(_direction):
 	var faces = player.dieFaces
 	ui.set_current_faces(faces.get_face(Constants.TOP), 
 		faces.get_face(Constants.BEHIND),
