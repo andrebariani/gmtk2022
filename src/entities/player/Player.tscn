@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -10,12 +10,42 @@
 [ext_resource path="res://src/entities/player/DieFace.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/player/states/Load.gd" type="Script" id=9]
 [ext_resource path="res://src/entities/player/states/Charge.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/pointers/hourglass.png" type="Texture" id=11]
+[ext_resource path="res://src/entities/player/Pointer.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 15 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 67, 68 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 11 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -59,6 +89,8 @@ shake_amount = 250
 [node name="Charge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
 
+[node name="Timer" type="Timer" parent="StateMachine/Charge"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
@@ -92,6 +124,14 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 2 )
 
+[node name="Pointer" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 8 )
+playing = true
+script = ExtResource( 12 )
+
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
 [connection signal="enemy_killed" from="StateMachine/Charge" to="." method="_on_Charge_enemy_killed"]
+[connection signal="timeout" from="StateMachine/Charge/Timer" to="StateMachine/Charge" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="StateMachine/Charge" method="_on_Hitbox_area_entered"]

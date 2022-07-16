@@ -12,5 +12,6 @@ func set_in_cutscene(value):
 	_in_cutscene = value
 	emit_signal("on_cutscene_changed", value)
 
-onready var menu_mouse = preload("res://assets/sprites/pointer_2.png")
-onready var game_mouse = preload("res://assets/sprites/mira.png")
+onready var menu_mouse = preload("res://assets/sprites/pointers/pointer_2.png")
+onready var game_mouse = preload("res://assets/sprites/pointers/mira.png")
+onready var time_mouse = preload("res://assets/sprites/pointers/hourglass.png")

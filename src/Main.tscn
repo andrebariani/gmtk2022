@@ -51,10 +51,10 @@ collision_layer = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
+
 [node name="ScreenShaders" parent="CanvasLayer" instance=ExtResource( 3 )]
 pause_mode = 2
-
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
