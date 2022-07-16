@@ -28,9 +28,7 @@ func _on_CloseLevel_button_up():
 
 func transition_finished(anim_name):
 	if anim_name == "CloseFromLeft" and visible:
-		if tutorial:
-			get_tree().change_scene("res://src/TutorialArea.tscn")
-		elif play:
-			get_tree().change_scene("res://src/stages/Swamp/Swamp.tscn")
+		if play:
+			get_tree().change_scene("res://src/Main.tscn")
 		else:
 			get_tree().quit()
