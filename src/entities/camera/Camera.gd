@@ -16,7 +16,7 @@ func _process(_delta):
 	var viewport = get_viewport()
 	var viewport_center = viewport.size / 2.0
 	var mouse_to_center = viewport.get_mouse_position() - viewport_center
-	var percent = mouse_to_center.length() / (viewport.size * 2.0)
+	var percent = (mouse_to_center / (viewport.size * 2.0)).length()
 	if percent > MAX_CAMERA_PERCENT:
 		percent = MAX_CAMERA_PERCENT
 	
