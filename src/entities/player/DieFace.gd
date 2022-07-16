@@ -42,7 +42,7 @@ func get_current_face():
 	return get_face(Constants.TOP)
 
 func get_enemy_type(face):
-	return FACE_ENEMIES[get_face(face)]
+	return FACE_ENEMIES[get_face(face)-1]
 
 func get_current_enemy_type():
 	return get_enemy_type(Constants.TOP)
