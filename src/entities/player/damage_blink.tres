@@ -1,0 +1,17 @@
+[gd_resource type="Shader" format=2]
+
+[resource]
+code = "shader_type canvas_item;
+
+uniform bool active;
+uniform vec3 color;
+
+void fragment() {
+	vec4 tex_color = texture(TEXTURE, UV);
+	
+	if (active) {
+		COLOR = vec4(color, tex_color.a);
+	} else {
+		COLOR = tex_color;
+	}
+}"

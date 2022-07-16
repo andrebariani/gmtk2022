@@ -41,3 +41,10 @@ func _on_Timer_charge_timeout():
 		$Hitbox/CollisionShape2D.disabled = true
 		movement_status = NORMAL
 		
+
+
+func _on_Hitbox_body_entered(body):
+	if body.has_method("take_damage"):
+		body.take_damage()
+	if body.has_method("take_knockback"):
+		body.take_knockback(charge_direction * speed/4)
