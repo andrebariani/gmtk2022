@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var Player = get_parent().get_node("Player")
+onready var Player = PlayerReference.get_player()
 onready var collision_shape = $CollisionShape2D.shape
 onready var knockback_timer = $Knockback_timer
 export (float) var speed
@@ -17,7 +17,7 @@ signal enemy_died(enemy)
 func on_ready():
 	pass
 
-func on_process(delta):
+func on_process(_delta):
 	pass
 
 func _process(delta):
@@ -25,9 +25,6 @@ func _process(delta):
 
 
 func _ready():
-	var enemies_spawner = get_parent().get_node("Enemies_spawner")
-	
-	connect("enemy_died", enemies_spawner, "_on_enemy_death", [self])
 	color = Constants.enemy_colors[color_number]
 	on_ready()
 

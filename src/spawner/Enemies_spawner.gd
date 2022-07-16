@@ -5,7 +5,7 @@ const SPAWN_HEIGHT = 3250  # Altura a partir do player para spawn de inimigos (p
 const EXTRA_SPACE = 150  # Inimigos não podem spawnar no campo de visão do player + EXTRA_SPACE
 const SPAWN_DELAY = 10
 
-onready var player = get_parent().get_node("Player")
+onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")
 onready var rng = RandomNumberGenerator.new()
 
@@ -42,11 +42,11 @@ func spawn_enemies():
 	var qnt_support_enemies = round(game_time / 60)
 	qnt_enemies_alive += qnt_attack_enemies + qnt_support_enemies
 	
-	for i in range(qnt_attack_enemies):
+	for _i in range(qnt_attack_enemies):
 		var selected = attack_enemies[rng.randi_range(0, len(attack_enemies) - 1)]
 		spawn_enemy(selected)
 	
-	for i in range(qnt_support_enemies):
+	for _i in range(qnt_support_enemies):
 		var selected = support_enemies[rng.randi_range(0, len(support_enemies) - 1)]
 		spawn_enemy(selected)
 
@@ -54,6 +54,7 @@ func spawn_enemy(Enemy):
 	var enemy = Enemy.instance()
 	get_parent().call_deferred("add_child", enemy)
 	enemy.position = get_random_position(enemy.get_node("CollisionShape2D").shape)
+	enemy.connect("enemy_died", self, "_on_enemy_death", [enemy])
 
 func get_random_position(enemy_colision_shape):
 	# Retorna uma posição aleatória dentro do range do retangulo de largura 

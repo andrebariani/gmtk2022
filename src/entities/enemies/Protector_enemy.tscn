@@ -15,7 +15,6 @@ radius = 300.0
 
 [node name="Protector_enemy" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-speed = 0.0
 protector = true
 color_number = 2
 

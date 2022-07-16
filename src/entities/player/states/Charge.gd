@@ -1,7 +1,8 @@
 extends State
 
-var look_vector
+signal enemy_killed
 
+var look_vector
 var starting_load = 0
 
 func begin():
@@ -32,14 +33,15 @@ func run(delta):
 func before_end(_next_state: String):
 	e.current_speed = e.walk_speed
 	e.has_dir_control = true
-	e.hitbox.monitoring = false
+	e.hitbox.set_deferred("monitoring", false)
 	e.take_knockback(look_vector * 1500)
 
 
 func _on_Hitbox_area_entered(area):
 	if area.has_method("take_damage"):
-		print('oi')
-		area.take_damage(e.current_enemy_type)
+		if area.take_damage(e.current_enemy_type):
+			emit_signal("enemy_killed")
 	
 	if area.has_method("take_knockback"):
 		area.take_knockback(look_vector * e.current_speed)
+		end("Idle")
