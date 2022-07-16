@@ -7,7 +7,7 @@
 [ext_resource path="res://src/Main.gd" type="Script" id=5]
 [ext_resource path="res://src/shaders/burano.png" type="Texture" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/entities/enemies/Melee_enemy.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
 
@@ -39,6 +39,11 @@ pause_mode = 1
 current = true
 zoom = Vector2( 2, 2 )
 
+[node name="Melee_enemy" parent="YSort" instance=ExtResource( 8 )]
+position = Vector2( 613, -13 )
+collision_layer = 2
+collision_mask = 518
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 1
 
@@ -59,10 +64,6 @@ pause_mode = 2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
-[node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
-pause_mode = 1
-ysort_path = NodePath("../YSort")
-
 [node name="ScoreTimer" type="Timer" parent="."]
 pause_mode = 1
 autostart = true
@@ -76,5 +77,3 @@ autostart = true
 [connection signal="game_over_finished" from="CanvasLayer/ScreenShaders" to="." method="_on_ScreenShaders_game_over_finished"]
 [connection signal="game_over_finished" from="CanvasLayer/GameOver" to="." method="_on_GameOver_game_over_finished"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
-
-[editable path="Enemies_spawner"]
