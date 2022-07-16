@@ -27,3 +27,11 @@ func _on_Player_rolled(_direction):
 
 func _on_Player_health_changed(value):
 	ui.set_health(value)
+
+
+func _on_Player_advanced_combo(face):
+	ui.set_next_combo_face(face)
+
+
+func _on_Player_triggered_combo():
+	ui.trigger_combo()

@@ -58,5 +58,7 @@ position = Vector2( 842, -467 )
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
+[connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="health_changed" from="YSort/Player" to="." method="_on_Player_health_changed"]
 [connection signal="rolled" from="YSort/Player" to="." method="_on_Player_rolled"]
+[connection signal="triggered_combo" from="YSort/Player" to="." method="_on_Player_triggered_combo"]
