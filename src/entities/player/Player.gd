@@ -17,6 +17,8 @@ export (int) var ROLL_FRAMES = 15
 onready var roll_speed = ROLL_SPEED
 var is_rolling = false
 
+export (int) var CHARGE_SPEED = 3000
+
 var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
@@ -36,17 +38,11 @@ var enablers = {
 	attack = true,
 	shoot = true,
 	roll = true,
-	string = true
+	charge = true
 }
 
-var die_faces = [
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-]
+var load_amount = 0
+
 
 func _ready():
 	current_speed = walk_speed

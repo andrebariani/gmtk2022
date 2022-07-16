@@ -5,3 +5,5 @@ func run(_delta):
 		end("Move")
 	elif e.get_input('roll'):
 		end("Roll")
+	elif e.get_input('charge'):
+		end("Load")

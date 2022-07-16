@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/player/Inputs.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/player/DieFace.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/player/states/Load.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/player/states/Charge.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58, 59 )
@@ -26,7 +28,7 @@ shape = SubResource( 1 )
 
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource( 7 )
-just_pressed_inputs = [ "roll" ]
+just_pressed_inputs = [ "roll", "charge" ]
 
 [node name="DieFaces" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -42,6 +44,12 @@ script = ExtResource( 3 )
 
 [node name="Roll" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+
+[node name="Load" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+
+[node name="Charge" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
