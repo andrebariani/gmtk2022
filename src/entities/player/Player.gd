@@ -18,6 +18,7 @@ onready var roll_speed = ROLL_SPEED
 var is_rolling = false
 
 export (int) var CHARGE_SPEED = 3000
+onready var charge_speed = CHARGE_SPEED
 
 var look_vector = Vector2.ZERO
 
@@ -56,7 +57,7 @@ func _ready():
 
 func _physics_process(delta):
 	look_vector = get_global_mouse_position() - global_position
-	move_and_collide(knockback)
+	move_and_collide(knockback * delta)
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	
 	update_timers()

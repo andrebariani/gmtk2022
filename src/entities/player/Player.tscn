@@ -16,8 +16,9 @@ extents = Vector2( 58, 59 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-WALK_SPEED = 30000
-ROLL_SPEED = 60000
+WALK_SPEED = 40000
+ROLL_SPEED = 90000
+CHARGE_SPEED = 240000
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( -1.76057, 1.84375 )
@@ -47,6 +48,7 @@ script = ExtResource( 5 )
 
 [node name="Load" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
+shake_amount = 250
 
 [node name="Charge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
