@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Player
 
-signal rolled
+signal rolled()
 
 export var debug = false
 
@@ -113,5 +113,5 @@ func approach(a, b, amount):
 	return a
 
 
-func _on_Roll_rolled():
-	emit_signal("rolled")
+func _on_Roll_rolled(direction):
+	emit_signal("rolled", direction)

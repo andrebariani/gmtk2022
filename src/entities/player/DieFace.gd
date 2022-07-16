@@ -4,47 +4,46 @@ const FACE_ENEMIES = [Constants.MELEE, Constants.RANGED, Constants.SUPPORT,
 					Constants.MELEE, Constants.RANGED, Constants.SUPPORT]
 
 var faces = [1, 4, 2, 3, 5, 6]
-enum { TOP, LEFT, FRONT, RIGHT, BEHIND, DOWN }
 
 
 func roll_left():
 	var f = faces.duplicate()
-	faces[LEFT] = f[TOP]
-	faces[TOP] = f[RIGHT]
-	faces[RIGHT] = f[DOWN]
-	faces[DOWN] = f[LEFT]
+	faces[Constants.LEFT] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.RIGHT]
+	faces[Constants.RIGHT] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.LEFT]
 
 func roll_down():
 	var f = faces.duplicate()
-	faces[FRONT] = f[TOP]
-	faces[TOP] = f[BEHIND]
-	faces[BEHIND] = f[DOWN]
-	faces[DOWN] = f[FRONT]
+	faces[Constants.FRONT] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.BEHIND]
+	faces[Constants.BEHIND] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.FRONT]
 
 func roll_right():
 	var f = faces.duplicate()
-	faces[RIGHT] = f[TOP]
-	faces[TOP] = f[LEFT]
-	faces[LEFT] = f[DOWN]
-	faces[DOWN] = f[RIGHT]
+	faces[Constants.RIGHT] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.LEFT]
+	faces[Constants.LEFT] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.RIGHT]
 
 func roll_up():
 	var f = faces.duplicate()
-	faces[BEHIND] = f[TOP]
-	faces[TOP] = f[FRONT]
-	faces[FRONT] = f[DOWN]
-	faces[DOWN] = f[BEHIND]
+	faces[Constants.BEHIND] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.FRONT]
+	faces[Constants.FRONT] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.BEHIND]
 
 
 func get_face(face):
 	return faces[face]
 
 func get_current_face():
-	return get_face(TOP)
+	return get_face(Constants.TOP)
 
 func get_enemy_type(face):
 	return FACE_ENEMIES[get_face(face)]
 
 func get_current_enemy_type():
-	return get_enemy_type(TOP)
+	return get_enemy_type(Constants.TOP)
 
