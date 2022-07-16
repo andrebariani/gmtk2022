@@ -77,3 +77,10 @@ func _on_Knockback_timer_timeout():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	movement_status = NORMAL
+
+
+func _on_FallHitbox_area_entered(area):
+	# matar inimigos que estavam embaixo dele durante o spawn
+	if movement_status != GOING_DOWN:
+		print(area.get_parent().name)
+		area.get_parent().die()
