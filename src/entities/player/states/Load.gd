@@ -1,7 +1,9 @@
 extends State
 
 export var shake_amount = 20
+export var shake_frequency = 50
 var shaking = false
+var load_min = 0.25
 var load_max = 0.75
 
 var clock = 0
@@ -22,16 +24,19 @@ func run(delta):
 		e.load_amount += delta
 		if e.load_amount > load_max:
 			e.load_amount = load_max
-			target_position = center
+			#target_position = center
 			shaking = false
 		
 		clock += delta
-		if clock > load_max/10:
+		if clock > load_max/shake_frequency:
+			clock = 0
 			target_position = center + Vector2(rand_range(-shake_amount, shake_amount),
 									rand_range(-shake_amount, shake_amount))
 	
-	e.position = lerp(e.position, target_position, delta)
+		e.position = lerp(e.position, target_position, delta)
 	
 	
 	if e.get_input('charge_released'):
+		if e.load_amount < load_min:
+			e.load_amount = load_min
 		end("Charge")

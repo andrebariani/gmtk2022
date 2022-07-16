@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -14,10 +14,14 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58, 59 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 67, 68 )
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-WALK_SPEED = 30000
-ROLL_SPEED = 60000
+WALK_SPEED = 40000
+ROLL_SPEED = 90000
+CHARGE_SPEED = 240000
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( -1.76057, 1.84375 )
@@ -25,6 +29,9 @@ texture = ExtResource( 6 )
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -47,6 +54,7 @@ script = ExtResource( 5 )
 
 [node name="Load" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
+shake_amount = 250
 
 [node name="Charge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -72,4 +80,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 18
+collision_mask = 32
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Charge" method="_on_Hitbox_area_entered"]
