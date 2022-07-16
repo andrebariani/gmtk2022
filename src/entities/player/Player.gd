@@ -13,6 +13,7 @@ export var debug = false
 export var MAX_HEALTH = 3
 onready var health = MAX_HEALTH
 var dead = false
+export var INVINCIBLE_DURATION = 1
 
 var current_speed = 100
 export (int) var WALK_SPEED = 600
@@ -36,6 +37,7 @@ onready var stateMachine = $StateMachine
 onready var dieFaces = $DieFaces
 onready var hitbox = $Hitbox
 
+onready var _invincibleTimer = $InvincibleTimer
 onready var _pointer = $Pointer
 onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
@@ -43,7 +45,7 @@ onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
 onready var timers = {
-	"roll": PlayerTimer.new(ROLL_FRAMES)
+	"roll": PlayerTimer.new(ROLL_FRAMES),
 }
 
 var enablers = {
@@ -97,13 +99,18 @@ func update_timers():
 
 
 func take_damage():
-	if dead:
+	if dead or _invincibleTimer.time_left > 0:
 		return
+	
+	_sprite.blink_anim()
+	_hurtbox.call_deferred("disabled", true)
+	_invincibleTimer.start(INVINCIBLE_DURATION)
 	
 	set_health(health - 1)
 	if health <= 0:
 		emit_signal("died")
 		dead = true
+
 
 func set_health(value):
 	health = value
@@ -181,3 +188,8 @@ func _on_Charge_enemy_killed():
 	
 	else:
 		next_combo_face = 1
+
+
+func _on_InvincibleTimer_timeout():
+	_sprite.stop_anim()
+	_hurtbox.call_deferred("disabled", false)
