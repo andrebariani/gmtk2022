@@ -1,9 +1,8 @@
 extends Node2D
 
-const CORRECTION = 128
-const SPAWN_WIDTH = 2048 - CORRECTION # Largura a partir do player para spawn de inimigos (player centralizado)
-const SPAWN_HEIGHT = 1216 - CORRECTION # Altura a partir do player para spawn de inimigos (player centralizado)
-const SPAWN_DELAY = 20
+var spawn_width
+var spawn_height
+const SPAWN_DELAY = 1
 
 onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")
@@ -28,11 +27,12 @@ func _ready():
 	# Definindo o tamanho do spawn blocker para que inimigos não spawnem no campo de visão do player + EXTRA_SPACE
 	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width") / 3
 	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height") / 3
+	spawn_width = $Spawn_area/CollisionShape2D.shape.extents.x * 2
+	spawn_height = $Spawn_area/CollisionShape2D.shape.extents.y * 2
 	
 	spawn_enemies()
 
 func _process(_delta):
-	print(position)
 	position = player.global_position
 
 func _on_Timer_timeout():
@@ -66,7 +66,7 @@ func get_random_position(enemy_colision_shape):
 	var space_state = get_world_2d().direct_space_state
 	
 	while true: # Enquanto a posição aleatória não for livre, irá ficar sorteando uma nova.
-		var random_pos = Vector2(rng.randf_range(-SPAWN_WIDTH/2,SPAWN_WIDTH/2), rng.randf_range(-SPAWN_HEIGHT/2,SPAWN_HEIGHT/2))
+		var random_pos = Vector2(rng.randf_range(-spawn_width/2,spawn_width/2), rng.randf_range(-spawn_height/2,spawn_height/2))
 		
 		var query = Physics2DShapeQueryParameters.new()
 		query.collision_layer = 0b00000001000000000000

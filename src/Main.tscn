@@ -61,7 +61,12 @@ position = Vector2( -392, -371 )
 
 [node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
 
+[node name="CollisionShape2D" parent="Enemies_spawner/Area2D" index="0"]
+position = Vector2( -0.5, -5.5 )
+
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="health_changed" from="YSort/Player" to="." method="_on_Player_health_changed"]
 [connection signal="rolled" from="YSort/Player" to="." method="_on_Player_rolled"]
 [connection signal="triggered_combo" from="YSort/Player" to="." method="_on_Player_triggered_combo"]
+
+[editable path="Enemies_spawner"]
