@@ -35,6 +35,8 @@ onready var inputHelper = $Inputs
 onready var stateMachine = $StateMachine
 onready var dieFaces = $DieFaces
 onready var hitbox = $Hitbox
+
+onready var _pointer = $Pointer
 onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
@@ -116,6 +118,17 @@ func get_input(key):
 	return inputHelper.inputs[key]
 
 
+func toggle_charge(value):
+	enablers.charge = value
+	if value:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		_pointer.visible = false
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		_pointer.frame = 0
+		_pointer.visible = true
+
+
 func set_enabler(enabler, value):
 	enablers[enabler] = value
 
@@ -154,6 +167,7 @@ func _on_Roll_rolled(direction):
 
 
 func _on_Charge_enemy_killed():
+	toggle_charge(true)
 	emit_signal("enemy_killed")
 	
 	if dieFaces.get_current_face() == next_combo_face:
