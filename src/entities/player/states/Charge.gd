@@ -2,6 +2,10 @@ extends State
 
 signal enemy_killed
 
+export var cooldown = 1
+
+onready var timer = $Timer
+
 var look_vector
 var starting_load = 0
 
@@ -35,6 +39,9 @@ func before_end(_next_state: String):
 	e.has_dir_control = true
 	e.hitbox.set_deferred("monitoring", false)
 	e.take_knockback(look_vector * 1500)
+	
+	e.toggle_charge(false)
+	timer.start()
 
 
 func _on_Hitbox_area_entered(area):
@@ -45,3 +52,7 @@ func _on_Hitbox_area_entered(area):
 	if area.has_method("take_knockback"):
 		area.take_knockback(look_vector * e.current_speed)
 		end("Idle")
+
+
+func _on_Timer_timeout():
+	e.toggle_charge(true)
