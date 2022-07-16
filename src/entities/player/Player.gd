@@ -80,6 +80,9 @@ func _physics_process(delta):
 	if debug:
 		_die_side_debug.set_text()
 		_die_side_debug.set_text()
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		take_damage()
 
 
 func apply_velocity(velocity):
