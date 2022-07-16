@@ -1,6 +1,6 @@
 extends State
 
-signal rolled
+signal rolled(direction)
 
 var orientation = Vector2.ZERO
 
@@ -17,14 +17,16 @@ func begin():
 	orientation = e.ori
 	if orientation.x < 0:
 		e.dieFaces.roll_left()
+		emit_signal("rolled", Constants.LEFT)
 	elif orientation.x > 0:
 		e.dieFaces.roll_right()
+		emit_signal("rolled", Constants.RIGHT)
 	elif orientation.y < 0:
 		e.dieFaces.roll_up()
+		emit_signal("rolled", Constants.FRONT)
 	else:
 		e.dieFaces.roll_down()
-	
-	emit_signal("rolled")
+		emit_signal("rolled", Constants.BEHIND)
 
 
 func run(delta):
