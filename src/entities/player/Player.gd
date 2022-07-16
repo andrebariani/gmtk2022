@@ -108,9 +108,3 @@ func approach(a, b, amount):
 		if(a < b):
 			return b
 	return a
-
-
-func player():
-	# DONT DELETE THIS
-	# ?!?!?!?!?!??!!  W H Y
-	pass
