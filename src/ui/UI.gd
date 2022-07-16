@@ -12,10 +12,11 @@ onready var diceFaces = $DiceFaces
 func _ready():
 	$HealthButton.visible = debug
 	$DiceButton.visible = debug
+	$ComboButton.visible = debug
 
 
 func set_next_combo_face(face_number):
-	combo.texture = faces[face_number-1]
+	combo.set_next_combo_face(faces[face_number-1])
 
 
 func set_current_faces(main, behind, front, left, right, down):
@@ -24,3 +25,7 @@ func set_current_faces(main, behind, front, left, right, down):
 
 func set_health(health):
 	healthbar.set_health(health)
+
+
+func _on_ComboButton_button_up():
+	set_next_combo_face(5)
