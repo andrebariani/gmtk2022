@@ -29,4 +29,5 @@ zoom = Vector2( 2, 2 )
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
+[connection signal="health_changed" from="Player" to="." method="_on_Player_health_changed"]
 [connection signal="rolled" from="Player" to="." method="_on_Player_rolled"]

@@ -2,8 +2,14 @@ extends KinematicBody2D
 class_name Player
 
 signal rolled()
+signal health_changed(value)
+signal died()
 
 export var debug = false
+
+export var MAX_HEALTH = 3
+onready var health = MAX_HEALTH
+var dead = false
 
 var current_speed = 100
 export (int) var WALK_SPEED = 600
@@ -80,6 +86,19 @@ func update_timers():
 	for t in timers.values():
 		t.tick()
 
+
+func take_damage():
+	if dead:
+		return
+	
+	set_health(health - 1)
+	if health <= 0:
+		emit_signal("died")
+		dead = true
+
+func set_health(value):
+	health = value
+	emit_signal("health_changed", health)
 
 func take_knockback(velocity):
 	knockback += velocity
