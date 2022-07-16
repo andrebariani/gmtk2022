@@ -35,3 +35,7 @@ func _on_Player_advanced_combo(face):
 
 func _on_Player_triggered_combo():
 	ui.trigger_combo()
+
+
+func _on_Player_died():
+	pass # Replace with function body.
