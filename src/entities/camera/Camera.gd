@@ -1,5 +1,8 @@
 extends Camera2D
 
+const MAX_CAMERA_PERCENT = 0.1
+const MAX_CAMERA_DISTANCE = 50.0
+
 export var shake_duration = 0.25
 var center_position = Vector2.ZERO
 
@@ -10,11 +13,21 @@ func _ready():
 	$Timer.wait_time = shake_duration
 
 func _process(_delta):
+	var viewport = get_viewport()
+	var viewport_center = viewport.size / 2.0
+	var mouse_to_center = viewport.get_mouse_position() - viewport_center
+	var percent = mouse_to_center.length() / (viewport.size * 2.0)
+	if percent > MAX_CAMERA_PERCENT:
+		percent = MAX_CAMERA_PERCENT
+	
+	var distance = MAX_CAMERA_DISTANCE * (percent / MAX_CAMERA_PERCENT)
+	center_position = mouse_to_center.normalized() * distance
+	
 	if (shake <= 0):
+		position = center_position
 		return
 	
-	position = (center_position + 
-		Vector2(rand_range(-shake, shake), rand_range(-shake, shake)))
+	position += Vector2(rand_range(-shake, shake), rand_range(-shake, shake))
 
 func shake_camera(level):
 	shake = level

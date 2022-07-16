@@ -15,7 +15,7 @@ shader = ExtResource( 3 )
 shader_param/center = Vector2( 0.5, 0.5 )
 shader_param/force = 0.3
 shader_param/size = 0.2
-shader_param/thickness = 0.2
+shader_param/thickness = 0.1
 
 [sub_resource type="Animation" id=4]
 resource_name = "Impact"
@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.25, 0.0 ]
+"values": [ 0.1, 0.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material:shader_param/size")
@@ -42,7 +42,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, 0.4 ]
+"values": [ 0.0, 0.25 ]
 }
 
 [sub_resource type="Animation" id=5]
