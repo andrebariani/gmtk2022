@@ -8,7 +8,7 @@ export (bool) var protector
 export (int) var color
 enum {NORMAL, KNOCKBACK}
 var movement_status = NORMAL
-var protected = false
+var protections = 0
 
 signal enemy_died(enemy)
 
@@ -74,7 +74,7 @@ func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 func _on_Hurtbox_area_entered(area):
 	var current_player_color = area.get_parent().get_current_color()
 	
-	if current_player_color == color and (protector or not protected):
+	if current_player_color == color and (protector or protections == 0):
 		die()
 	else:
 		movement_status = KNOCKBACK
