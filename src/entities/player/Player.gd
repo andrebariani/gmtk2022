@@ -17,11 +17,15 @@ export (int) var ROLL_FRAMES = 15
 onready var roll_speed = ROLL_SPEED
 var is_rolling = false
 
+export (int) var CHARGE_SPEED = 3000
+onready var charge_speed = CHARGE_SPEED
+
 var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
 onready var stateMachine = $StateMachine
 onready var dieFaces = $DieFaces
+onready var hitbox = $Hitbox
 onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
@@ -36,17 +40,12 @@ var enablers = {
 	attack = true,
 	shoot = true,
 	roll = true,
-	string = true
+	charge = true
 }
 
-var die_faces = [
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-	{"color": "blue", "up": 4, "down": 2, "left": 5, "right": 6},
-]
+var current_enemy_type = Constants.MELEE
+var load_amount = 0
+
 
 func _ready():
 	current_speed = walk_speed
@@ -60,7 +59,7 @@ func _ready():
 
 func _physics_process(delta):
 	look_vector = get_global_mouse_position() - global_position
-	move_and_collide(knockback)
+	move_and_collide(knockback * delta)
 	knockback = lerp(knockback, Vector2.ZERO, 0.1)
 	
 	update_timers()
@@ -114,4 +113,14 @@ func approach(a, b, amount):
 
 
 func _on_Roll_rolled(direction):
+	if direction == Constants.LEFT:
+		dieFaces.roll_left()
+	elif direction == Constants.RIGHT:
+		dieFaces.roll_right()
+	elif direction == Constants.BEHIND:
+		dieFaces.roll_up()
+	else:
+		dieFaces.roll_down()
+	
+	current_enemy_type = dieFaces.get_current_enemy_type()
 	emit_signal("rolled", direction)
