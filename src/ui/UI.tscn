@@ -32,6 +32,7 @@ __meta__ = {
 }
 
 [node name="Health1" type="TextureRect" parent="Healthbar"]
+rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -42,6 +43,7 @@ __meta__ = {
 margin_left = 72.0
 margin_right = 136.0
 margin_bottom = 64.0
+rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
@@ -52,11 +54,14 @@ __meta__ = {
 margin_left = 145.0
 margin_right = 209.0
 margin_bottom = 64.0
+rect_pivot_offset = Vector2( 32, 32 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="Healthbar"]
 
 [node name="HealthButton" type="Button" parent="."]
 margin_left = 99.0
