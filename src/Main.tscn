@@ -64,10 +64,6 @@ pause_mode = 2
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 7 )]
 
-[node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
-pause_mode = 1
-ysort_path = NodePath("../YSort")
-
 [node name="ScoreTimer" type="Timer" parent="."]
 pause_mode = 1
 autostart = true
@@ -81,5 +77,3 @@ autostart = true
 [connection signal="game_over_finished" from="CanvasLayer/ScreenShaders" to="." method="_on_ScreenShaders_game_over_finished"]
 [connection signal="game_over_finished" from="CanvasLayer/GameOver" to="." method="_on_GameOver_game_over_finished"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
-
-[editable path="Enemies_spawner"]

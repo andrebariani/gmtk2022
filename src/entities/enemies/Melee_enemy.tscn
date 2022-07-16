@@ -53,7 +53,7 @@ collision_layer = 0
 shape = SubResource( 3 )
 
 [node name="Timer_charging" type="Timer" parent="." index="6"]
-wait_time = 0.5
+wait_time = 10.0
 one_shot = true
 
 [node name="Timer_charge" type="Timer" parent="." index="7"]

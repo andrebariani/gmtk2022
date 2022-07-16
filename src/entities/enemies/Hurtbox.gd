@@ -10,6 +10,4 @@ func take_damage(player_color):
 	return false
 
 func take_knockback(knockback_vector):
-	enemy.knockback_timer.start()
-	enemy.movement_status = enemy.KNOCKBACK
-	enemy.knockback_vector = knockback_vector
+	enemy.take_knockback(knockback_vector)
