@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var Player = PlayerReference.get_player()
 onready var collision_shape = $CollisionShape2D.shape
 onready var knockback_timer = $Knockback_timer
+onready var sprite = $Sprite
+
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
