@@ -1,6 +1,8 @@
 extends KinematicBody2D
 class_name Player
 
+signal rolled
+
 export var debug = false
 
 var current_speed = 100
@@ -19,6 +21,7 @@ var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
 onready var stateMachine = $StateMachine
+onready var dieFaces = $DieFaces
 onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
@@ -110,7 +113,5 @@ func approach(a, b, amount):
 	return a
 
 
-func player():
-	# DONT DELETE THIS
-	# ?!?!?!?!?!??!!  W H Y
-	pass
+func _on_Roll_rolled():
+	emit_signal("rolled")

@@ -1,5 +1,9 @@
 extends State
 
+signal rolled
+
+var orientation = Vector2.ZERO
+
 func begin():
 	if !e.enablers.roll:
 		end(stateMachine.state_last)
@@ -9,10 +13,25 @@ func begin():
 	
 	e.current_speed = e.roll_speed
 	e.has_dir_control = false
+	
+	orientation = e.ori
+	if orientation.x < 0:
+		e.dieFaces.roll_left()
+	elif orientation.x > 0:
+		e.dieFaces.roll_right()
+	elif orientation.y < 0:
+		e.dieFaces.roll_up()
+	else:
+		e.dieFaces.roll_down()
+	
+	emit_signal("rolled")
 
 
 func run(delta):
-	e.apply_velocity(e.ori * delta)
+	if orientation.x != 0:
+		e.apply_velocity(orientation.x * delta)
+	else:
+		e.apply_velocity(orientation.y * delta)
 	
 	if e.timers.roll.is_over():
 		if e.get_input('dirv'):

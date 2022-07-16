@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/shaders/Screen.tres" type="Shader" id=1]
+[ext_resource path="res://src/shaders/burano.png" type="Texture" id=2]
+[ext_resource path="res://src/shaders/ImpactShader.gdshader" type="Shader" id=3]
+[ext_resource path="res://src/shaders/ScreenShader.gd" type="Script" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/saturation = 0.1
+shader_param/color = 2
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 3 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/force = 0.3
+shader_param/size = 0.2
+shader_param/thickness = 0.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Impact"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.25 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/force")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.2 ]
+}
+
+[node name="ScreenShaders" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+margin_left = 18.0
+margin_top = 2.0
+margin_right = 818.0
+margin_bottom = 602.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBufferCop" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="ScreenShader" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+rect = Rect2( 0, 0, 1000, 1000 )
+
+[node name="ImpactShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ImpactShader"]
+anims/Impact = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 11.0
+margin_top = 68.0
+margin_right = 23.0
+margin_bottom = 88.0
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
