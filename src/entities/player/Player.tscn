@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -8,25 +8,77 @@
 [ext_resource path="res://assets/dice/dice.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/player/Inputs.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/player/DieFace.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/player/states/Load.gd" type="Script" id=9]
+[ext_resource path="res://src/entities/player/states/Charge.gd" type="Script" id=10]
+[ext_resource path="res://assets/sprites/pointers/hourglass.png" type="Texture" id=11]
+[ext_resource path="res://src/entities/player/Pointer.gd" type="Script" id=12]
+[ext_resource path="res://src/entities/player/damage_blink.tres" type="Shader" id=13]
+[ext_resource path="res://src/entities/player/EntitySprite.gd" type="Script" id=14]
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 13 )
+shader_param/active = null
+shader_param/color = null
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 15 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 67, 68 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 11 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 9
+collision_mask = 6
 script = ExtResource( 2 )
-WALK_SPEED = 30000
-ROLL_SPEED = 60000
+WALK_SPEED = 40000
+ROLL_SPEED = 90000
+CHARGE_SPEED = 240000
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 9 )
 texture = ExtResource( 6 )
+script = ExtResource( 14 )
+
+[node name="Tween" type="Tween" parent="Sprite"]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5 )
 shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Inputs" type="Node" parent="."]
 script = ExtResource( 7 )
-just_pressed_inputs = [ "roll" ]
+just_pressed_inputs = [ "roll", "charge" ]
 
 [node name="DieFaces" type="Node" parent="."]
 script = ExtResource( 8 )
@@ -43,6 +95,15 @@ script = ExtResource( 3 )
 [node name="Roll" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
+[node name="Load" type="Node" parent="StateMachine"]
+script = ExtResource( 9 )
+shake_amount = 250
+
+[node name="Charge" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+
+[node name="Timer" type="Timer" parent="StateMachine/Charge"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
@@ -50,6 +111,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="State" type="Label" parent="CanvasLayer/Debug"]
 margin_right = 1024.0
@@ -64,4 +128,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 34
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 2 )
+
+[node name="Pointer" type="AnimatedSprite" parent="."]
+visible = false
+scale = Vector2( 2, 2 )
+frames = SubResource( 8 )
+frame = 4
+playing = true
+script = ExtResource( 12 )
+
+[node name="InvincibleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="tween_all_completed" from="Sprite/Tween" to="Sprite" method="_on_Tween_tween_all_completed"]
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
+[connection signal="enemy_killed" from="StateMachine/Charge" to="." method="_on_Charge_enemy_killed"]
+[connection signal="timeout" from="StateMachine/Charge/Timer" to="StateMachine/Charge" method="_on_Timer_timeout"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Charge" method="_on_Hitbox_area_entered"]
+[connection signal="timeout" from="InvincibleTimer" to="." method="_on_InvincibleTimer_timeout"]

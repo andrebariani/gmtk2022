@@ -6,6 +6,8 @@ var inputs = {
 	dirv = Vector2.ZERO,
 	roll = false,
 	roll_jp = false,
+	charge = false,
+	charge_released = false
 }
 
 var disabled = false
@@ -44,3 +46,6 @@ func get_inputs():
 	for just_pressed_input in just_pressed_inputs:
 		if Input.is_action_just_pressed(just_pressed_input):
 			inputs[just_pressed_input] = true
+	
+	if Input.is_action_just_released("charge"):
+		inputs.charge_released = true

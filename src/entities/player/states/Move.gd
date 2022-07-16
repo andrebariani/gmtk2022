@@ -11,3 +11,5 @@ func run(delta):
 		end("Idle")
 	elif e.get_input('roll'):
 		end("Roll")
+	elif e.get_input('charge'):
+		end("Load")

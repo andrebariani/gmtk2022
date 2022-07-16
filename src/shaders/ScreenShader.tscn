@@ -7,7 +7,7 @@
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )
-shader_param/saturation = 0.1
+shader_param/saturation = 0.5
 shader_param/color = 2
 
 [sub_resource type="ShaderMaterial" id=3]
@@ -95,6 +95,9 @@ __meta__ = {
 [node name="BackBufferCop" type="BackBufferCopy" parent="."]
 copy_mode = 2
 rect = Rect2( 0, 0, 1000, 1000 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ScreenShader" type="ColorRect" parent="."]
 material = SubResource( 1 )
@@ -108,6 +111,9 @@ __meta__ = {
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 rect = Rect2( 0, 0, 1000, 1000 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="ImpactShader" type="ColorRect" parent="."]
 visible = false
@@ -121,11 +127,3 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ImpactShader"]
 anims/Impact = SubResource( 4 )
 anims/RESET = SubResource( 5 )
-
-[node name="Button" type="Button" parent="."]
-margin_left = 11.0
-margin_top = 68.0
-margin_right = 23.0
-margin_bottom = 88.0
-
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

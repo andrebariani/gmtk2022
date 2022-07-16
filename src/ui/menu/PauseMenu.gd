@@ -26,4 +26,4 @@ func _on_Menu_button_up():
 func transition_finished(anim_name):
 	if anim_name == "CloseFromLeft" and visible:
 		get_tree().paused = false
-		get_tree().change_scene("res://src/ui/MainMenu.tscn")
+		get_tree().change_scene("res://src/ui/menu/MainMenu.tscn")

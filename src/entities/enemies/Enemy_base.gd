@@ -1,21 +1,23 @@
 extends KinematicBody2D
 
-var attributes = {}
-onready var Player = get_parent().get_node("Player")
+onready var Player = PlayerReference.get_player()
 onready var collision_shape = $CollisionShape2D.shape
+onready var knockback_timer = $Knockback_timer
 export (float) var speed
 export (bool) var protector
-export (int) var color
-enum {NORMAL, KNOCKBACK}
+export (int) var color_number
+enum {NORMAL, GOING_DOWN, KNOCKBACK, STOP, CHARGING, CHARGE}
+var color
 var movement_status = NORMAL
 var protections = 0
+var knockback_vector
 
 signal enemy_died(enemy)
 
 func on_ready():
 	pass
 
-func on_process(delta):
+func on_process(_delta):
 	pass
 
 func _process(delta):
@@ -23,9 +25,9 @@ func _process(delta):
 
 
 func _ready():
-	var enemies_spawner = get_parent().get_node("Enemies_spawner")
-	
-	connect("enemy_died", enemies_spawner, "_on_enemy_death", [self])
+	$AnimationPlayer.play("GOING_DOWN")
+	movement_status = GOING_DOWN
+	color = Constants.enemy_colors[color_number]
 	on_ready()
 
 
@@ -70,16 +72,15 @@ func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 	return 0
 
 
-
-func _on_Hurtbox_area_entered(area):
-	var current_player_color = area.get_parent().get_current_color()
-	
-	if current_player_color == color and (protector or protections == 0):
-		die()
-	else:
-		movement_status = KNOCKBACK
-		$Knockback_timer.start()
-
-
 func _on_Knockback_timer_timeout():
 	movement_status = NORMAL
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	movement_status = NORMAL
+
+
+func _on_FallHitbox_area_entered(area):
+	# matar inimigos que estavam embaixo dele durante o spawn
+	if movement_status != GOING_DOWN:
+		print(area.get_parent().name)
+		area.get_parent().die()
