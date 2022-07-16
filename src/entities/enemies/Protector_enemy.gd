@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://src/entities/enemies/Enemy_base.gd"
 
 
 func _on_Protect_range_body_entered(body):

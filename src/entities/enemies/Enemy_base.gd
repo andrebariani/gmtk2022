@@ -1,12 +1,12 @@
 extends KinematicBody2D
 
-var attributes = {}
 onready var Player = get_parent().get_node("Player")
 onready var collision_shape = $CollisionShape2D.shape
 export (float) var speed
 export (bool) var protector
-export (int) var color
+export (int) var color_number
 enum {NORMAL, KNOCKBACK}
+var color
 var movement_status = NORMAL
 var protections = 0
 
@@ -26,6 +26,7 @@ func _ready():
 	var enemies_spawner = get_parent().get_node("Enemies_spawner")
 	
 	connect("enemy_died", enemies_spawner, "_on_enemy_death", [self])
+	color = Constants.enemy_colors[color_number]
 	on_ready()
 
 
@@ -68,17 +69,6 @@ func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 			return angle
 	
 	return 0
-
-
-
-func _on_Hurtbox_area_entered(area):
-	var current_player_color = area.get_parent().get_current_color()
-	
-	if current_player_color == color and (protector or protections == 0):
-		die()
-	else:
-		movement_status = KNOCKBACK
-		$Knockback_timer.start()
 
 
 func _on_Knockback_timer_timeout():
