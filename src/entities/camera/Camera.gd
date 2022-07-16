@@ -27,7 +27,7 @@ func _process(_delta):
 		position = center_position
 		return
 	
-	position += Vector2(rand_range(-shake, shake), rand_range(-shake, shake))
+	position = center_position + Vector2(rand_range(-shake, shake), rand_range(-shake, shake))
 
 func shake_camera(level):
 	shake = level
