@@ -137,13 +137,11 @@ anims/Shimmer = SubResource( 11 )
 
 [node name="DiceAnimation" parent="Sprite" instance=ExtResource( 17 )]
 use_parent_material = true
-position = Vector2( 0, 0 )
 
 [node name="Tween" type="Tween" parent="Sprite"]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 5 )
+position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -220,7 +218,6 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 script = ExtResource( 12 )
 
