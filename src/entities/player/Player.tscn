@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -18,6 +18,13 @@
 [ext_resource path="res://src/entities/player/Lights.gd" type="Script" id=16]
 [ext_resource path="res://src/entities/player/animation/DiceAnimation.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/entities/player/particles/Particles.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/sfx/sfx_roll5.mp3" type="AudioStream" id=19]
+[ext_resource path="res://assets/sfx/sfx_load.mp3" type="AudioStream" id=20]
+[ext_resource path="res://assets/sfx/sfx_charge2.mp3" type="AudioStream" id=21]
+[ext_resource path="res://assets/sfx/sfx_die_damage.mp3" type="AudioStream" id=22]
+[ext_resource path="res://assets/sfx/sfx_gameover.mp3" type="AudioStream" id=23]
+[ext_resource path="res://assets/sfx/sfx_thud.mp3" type="AudioStream" id=24]
+[ext_resource path="res://assets/sfx/sfx_enemy_damage.mp3" type="AudioStream" id=25]
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 13 )
@@ -221,12 +228,47 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 script = ExtResource( 12 )
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="roll" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 19 )
+pitch_scale = 0.9
+bus = "Sound"
+
+[node name="charge_load" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 20 )
+volume_db = -5.0
+bus = "Sound"
+
+[node name="charge" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 21 )
+bus = "Sound"
+
+[node name="thud" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 24 )
+bus = "Sound"
+
+[node name="damage" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 22 )
+bus = "Sound"
+
+[node name="enemy_die" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 25 )
+volume_db = -10.0
+pitch_scale = 1.2
+bus = "Sound"
+
+[node name="die" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource( 23 )
+volume_db = -10.0
+pitch_scale = 0.9
+bus = "Sound"
 
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
 [connection signal="enemy_hit" from="StateMachine/Charge" to="." method="_on_Charge_enemy_hit"]

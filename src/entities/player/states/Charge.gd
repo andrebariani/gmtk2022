@@ -16,6 +16,8 @@ func begin():
 		end("Idle")
 		return
 	
+	e.sfx_charge.play()
+	
 	look_vector = (e.get_global_mouse_position() - e.global_position).normalized()
 	e.current_speed = e.charge_speed
 	e.has_dir_control = false

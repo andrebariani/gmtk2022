@@ -68,10 +68,12 @@ func _on_Player_enemy_killed():
 
 
 func _on_Player_advanced_combo(face):
+	$sfx/combo_hit.play()
 	ui.set_next_combo_face(face)
 
 
 func _on_Player_triggered_combo():
+	$sfx/combo_complete.play()
 	camera.shake_camera(600)
 	add_score(18)
 	ui.trigger_combo()

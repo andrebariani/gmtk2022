@@ -56,6 +56,14 @@ onready var _light_front = $Lights/Front
 onready var _light_left = $Lights/Left
 onready var _light_right = $Lights/Right
 
+onready var sfx_roll = $sfx/roll
+onready var sfx_charge_load = $sfx/charge_load
+onready var sfx_charge = $sfx/charge
+onready var sfx_damage = $sfx/damage
+onready var sfx_die = $sfx/die
+onready var sfx_thud = $sfx/thud
+onready var sfx_enemy_death = $sfx/enemy_die
+
 onready var timers = {
 	"roll": PlayerTimer.new(ROLL_FRAMES),
 }
@@ -116,12 +124,14 @@ func take_damage():
 	if dead or _invincibleTimer.time_left > 0:
 		return
 	
+	sfx_damage.play()
 	sprite.blink_anim()
 	set_invincible(INVINCIBLE_DURATION)
 	emit_signal("took_damage")
 	
 	set_health(health - 1)
 	if health <= 0:
+		sfx_die.play()
 		emit_signal("died")
 		dead = true
 
@@ -209,6 +219,7 @@ func _on_Roll_rolled(direction):
 	_light_behind.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.BEHIND)]
 	_light_left.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.LEFT)]
 	_light_right.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.RIGHT)]
+	
 	emit_signal("rolled", direction)
 
 
@@ -227,6 +238,7 @@ func _on_Charge_enemy_killed():
 	else:
 		next_combo_face = 1
 	
+	sfx_enemy_death.play()
 	emit_signal("advanced_combo", next_combo_face)
 
 
@@ -235,4 +247,5 @@ func _on_InvincibleTimer_timeout():
 
 
 func _on_Charge_enemy_hit():
+	sfx_thud.play()
 	emit_signal("enemy_hit")

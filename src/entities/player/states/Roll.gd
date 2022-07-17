@@ -9,6 +9,8 @@ func begin():
 		end(stateMachine.state_last)
 		return
 	
+	e.sfx_roll.play()
+	
 	e.spawn_particles(3, 5)
 	
 	e.set_collision_mask_bit(1, false)
