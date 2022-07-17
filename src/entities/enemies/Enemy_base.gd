@@ -37,6 +37,7 @@ func _ready():
 	$AnimationPlayer.play(animation_name)
 	movement_status = GOING_DOWN
 	color = Constants.enemy_colors[color_number]
+	set_highlighted_color(GlobalNode.current_color)
 	on_ready()
 
 
