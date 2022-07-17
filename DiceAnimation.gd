@@ -30,8 +30,7 @@ onready var behind_face_top_num: Sprite = $NextFaceAnimation/Top/Number
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 func move_dice(direction, number: int, front_number: int = 0) -> void:
-	if Constants.FRONT:
-		front_number =  curr_face_top.frame + 1
+	_reset_animation()
 	_set_current_face_as_old()
 	_set_new_face_with_direction(direction, number, front_number)
 	_hide_current_face()
@@ -105,3 +104,6 @@ func _play_transition_animation(direction):
 
 func _on_Button_pressed():
 	move_dice(Constants.FRONT, 1)
+
+func _reset_animation():
+	anim_player.play("RESET")
