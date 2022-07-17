@@ -812,6 +812,7 @@ tracks/9/keys = {
 }
 
 [node name="DiceAnimation" type="Node2D"]
+use_parent_material = true
 script = ExtResource( 5 )
 
 [node name="NextFaceAnimation" type="Node2D" parent="."]
@@ -955,6 +956,7 @@ __meta__ = {
 }
 
 [node name="CurrentFace" type="Node2D" parent="."]
+use_parent_material = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

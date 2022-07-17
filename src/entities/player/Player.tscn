@@ -28,7 +28,7 @@
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 13 )
-shader_param/active = null
+shader_param/active = false
 shader_param/color = null
 
 [sub_resource type="Animation" id=11]
@@ -145,7 +145,6 @@ autoplay = "Shimmer"
 anims/Shimmer = SubResource( 11 )
 
 [node name="DiceAnimation" parent="Sprite" instance=ExtResource( 17 )]
-use_parent_material = true
 
 [node name="Tween" type="Tween" parent="Sprite"]
 
@@ -228,6 +227,7 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
+frame = 4
 playing = true
 script = ExtResource( 12 )
 
