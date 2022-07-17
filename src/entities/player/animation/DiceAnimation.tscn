@@ -208,12 +208,12 @@ tracks/16/path = NodePath("../../CurrentFace:visible")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/imported = false
-tracks/16/enabled = false
+tracks/16/enabled = true
 tracks/16/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ true ]
 }
 tracks/17/type = "value"
 tracks/17/path = NodePath("../../CurrentFace:scale")
@@ -921,6 +921,7 @@ __meta__ = {
 }
 
 [node name="CurrentFace" type="Node2D" parent="."]
+visible = false
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
