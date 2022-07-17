@@ -12,10 +12,13 @@ void fragment() {
 		COLOR.rgb = vec3(avg);
 	}
 	else {
+		COLOR.rgb = vec3(1, 1, 1);
+		
 		// If the selected color is not the primary color, reduce saturation
 		if ((color == 0 && (c.r < c.g || c.r < c.b)) ||
 			(color == 1 && (c.g < c.r || c.g < c.b)) ||
-			(color == 2 && (c.b < c.r || c.b < c.g))) {
+			(color == 2 && (c.b < c.r || c.b < c.g))
+		) {
 			float avg = (c.r + c.g + c.b) / 3.0;
 			c.r = (c.r * saturation) + (avg * (1.0 - saturation));
 			c.g = (c.g * saturation) + (avg * (1.0 - saturation));

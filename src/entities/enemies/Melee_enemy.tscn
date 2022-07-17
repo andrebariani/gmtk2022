@@ -10,8 +10,8 @@
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/active = false
-shader_param/saturation = 1.0
-shader_param/color = 0
+shader_param/saturation = 0.0
+shader_param/color = 1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.5, 31.25 )
@@ -38,6 +38,7 @@ charge_mult = 7.0
 material = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="." index="1"]
+visible = false
 position = Vector2( -0.5, -0.25 )
 shape = SubResource( 1 )
 
