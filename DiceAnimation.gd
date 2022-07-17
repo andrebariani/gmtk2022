@@ -102,4 +102,4 @@ func _play_transition_animation(direction):
 			anim_player.play("to_front")
 
 func _on_Button_pressed():
-	move_dice(Constants.FRONT, i)
+	move_dice(Constants.FRONT, 1)
