@@ -1,5 +1,6 @@
 extends State
 
+signal enemy_hit
 signal enemy_killed
 
 export var cooldown = 0.5
@@ -20,9 +21,8 @@ func begin():
 	e.has_dir_control = false
 	e.hitbox.monitoring = true
 	starting_load = e.load_amount
-	if starting_load == e.MAX_CHARGE:
-		e.sprite.set_blink_active(true)
-		e.set_invincible(starting_load)
+	e.sprite.set_blink_active(true)
+	e.set_invincible(starting_load)
 
 
 func run(delta):
@@ -51,6 +51,7 @@ func before_end(_next_state: String):
 
 
 func _on_Hitbox_area_entered(area):
+	emit_signal("enemy_hit")
 	if area.has_method("take_damage"):
 		if area.take_damage(e.current_enemy_type):
 			emit_signal("enemy_killed")

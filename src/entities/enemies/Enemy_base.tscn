@@ -1,9 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_base.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/enemies/Hurtbox.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/chips/chip_shadow.png" type="Texture" id=4]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/active = false
+shader_param/saturation = 0.35
+shader_param/color = 0
 
 [sub_resource type="Animation" id=1]
 resource_name = "GOING_DOWN"
@@ -165,6 +173,7 @@ collision_mask = 518
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 4 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
