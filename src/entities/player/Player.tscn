@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://src/entities/player/EntitySprite.gd" type="Script" id=14]
 [ext_resource path="res://assets/sprites/lightcone.png" type="Texture" id=15]
 [ext_resource path="res://src/entities/player/Lights.gd" type="Script" id=16]
-
+[ext_resource path="res://src/entities/player/Particles.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 13 )
@@ -64,7 +64,7 @@ script = ExtResource( 2 )
 WALK_SPEED = 40000
 ROLL_SPEED = 90000
 CHARGE_SPEED = 240000
-dust = ExtResource( 15 )
+dust = ExtResource( 17 )
 
 [node name="Lights" type="Node2D" parent="."]
 visible = false
@@ -185,7 +185,7 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
-frame = 3
+frame = 2
 playing = true
 script = ExtResource( 12 )
 
