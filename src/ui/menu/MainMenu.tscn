@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/sprites/ui/MenuButtonPressed.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/ui/MenuButton.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/bg/bg_menu.png" type="Texture" id=7]
 [ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=8]
 [ext_resource path="res://assets/bgm/137_Eyewaz - Boundless - FREE DOWNLOAD #137.mp3" type="AudioStream" id=9]
+[ext_resource path="res://src/WorldEnvironment.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
 
@@ -404,48 +405,6 @@ tracks/1/keys = {
 [sub_resource type="DynamicFont" id=17]
 size = 96
 font_data = ExtResource( 6 )
-
-[sub_resource type="Environment" id=19]
-background_mode = 4
-glow_enabled = true
-glow_intensity = 0.09
-glow_strength = 1.86
-glow_blend_mode = 0
-glow_hdr_scale = 3.37
-glow_high_quality = true
-adjustment_enabled = true
-
-[sub_resource type="Animation" id=20]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:environment:glow_strength")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 1.86 ]
-}
-
-[sub_resource type="Animation" id=21]
-resource_name = "TitleGlow"
-length = 1.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:environment:glow_strength")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 1.86, 2.0, 1.86 ]
-}
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -960,13 +919,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 19 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
-autoplay = "TitleGlow"
-anims/RESET = SubResource( 20 )
-anims/TitleGlow = SubResource( 21 )
+[node name="WorldEnvironment" parent="." instance=ExtResource( 10 )]
 
 [connection signal="button_up" from="Menu/Gamemodes/Tutorial" to="." method="_on_Tutorial_button_up"]
 [connection signal="button_up" from="Menu/Gamemodes/Play" to="." method="_on_Play_button_up"]
