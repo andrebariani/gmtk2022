@@ -9,6 +9,7 @@ onready var timer = $Timer
 var look_vector
 var starting_load = 0
 
+
 func begin():
 	if !e.enablers.charge:
 		end("Idle")
@@ -19,7 +20,9 @@ func begin():
 	e.has_dir_control = false
 	e.hitbox.monitoring = true
 	starting_load = e.load_amount
-	e.toggle_charge(false)
+	if starting_load == e.MAX_CHARGE:
+		e.sprite.set_blink_active(true)
+		e.set_invincible(starting_load)
 
 
 func run(delta):
@@ -28,7 +31,9 @@ func run(delta):
 	e.current_speed = lerp(e.charge_speed, e.walk_speed, 
 		1 - e.load_amount/starting_load)
 	e.load_amount -= delta*2
+	
 	if e.load_amount <= 0:
+		e.take_knockback(look_vector * 1500)
 		if e.get_input('dirv') == Vector2.ZERO:
 			end("Idle")
 		else:
@@ -39,7 +44,8 @@ func before_end(_next_state: String):
 	e.current_speed = e.walk_speed
 	e.has_dir_control = true
 	e.hitbox.set_deferred("monitoring", false)
-	e.take_knockback(look_vector * 1500)
+	e.sprite.set_blink_active(false)
+	e.light.visible = false
 	
 	timer.start()
 

@@ -697,16 +697,17 @@ position = Vector2( 332, 147 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 5 )
 top_num = 6
-front_num = null
 
 [node name="NextFaceAnimation" type="Node2D" parent="."]
 visible = false
+use_parent_material = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="OldFront" type="Sprite" parent="NextFaceAnimation"]
+use_parent_material = true
 position = Vector2( 0, 25 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -25 )
@@ -716,6 +717,7 @@ __meta__ = {
 }
 
 [node name="OldFrontNumber" type="Sprite" parent="NextFaceAnimation/OldFront"]
+use_parent_material = true
 position = Vector2( 0, -5 )
 texture = ExtResource( 1 )
 hframes = 6
@@ -726,6 +728,7 @@ __meta__ = {
 
 [node name="Bottom" type="Sprite" parent="NextFaceAnimation"]
 visible = false
+use_parent_material = true
 position = Vector2( 0, 25 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -25 )
@@ -735,6 +738,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="NextFaceAnimation/Bottom"]
+use_parent_material = true
 position = Vector2( 0, -5 )
 texture = ExtResource( 1 )
 hframes = 6
@@ -745,6 +749,7 @@ __meta__ = {
 
 [node name="Left" type="Sprite" parent="NextFaceAnimation"]
 visible = false
+use_parent_material = true
 position = Vector2( -20, -5 )
 texture = ExtResource( 4 )
 offset = Vector2( 20, 0 )
@@ -756,6 +761,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="NextFaceAnimation/Left"]
+use_parent_material = true
 texture = ExtResource( 3 )
 offset = Vector2( 20, 0 )
 hframes = 6
@@ -767,6 +773,7 @@ __meta__ = {
 
 [node name="Right" type="Sprite" parent="NextFaceAnimation"]
 visible = false
+use_parent_material = true
 position = Vector2( 20, -5 )
 texture = ExtResource( 4 )
 offset = Vector2( -20, 0 )
@@ -777,6 +784,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="NextFaceAnimation/Right"]
+use_parent_material = true
 texture = ExtResource( 3 )
 offset = Vector2( -20, 0 )
 hframes = 6
@@ -788,6 +796,7 @@ __meta__ = {
 
 [node name="Top" type="Sprite" parent="NextFaceAnimation"]
 visible = false
+use_parent_material = true
 position = Vector2( 0, -25 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, 20 )
@@ -798,6 +807,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="NextFaceAnimation/Top"]
+use_parent_material = true
 texture = ExtResource( 3 )
 offset = Vector2( 0, 20 )
 hframes = 6
@@ -808,6 +818,7 @@ __meta__ = {
 }
 
 [node name="Old" type="Sprite" parent="NextFaceAnimation"]
+use_parent_material = true
 position = Vector2( 0, -5 )
 texture = ExtResource( 4 )
 hframes = 6
@@ -818,6 +829,7 @@ __meta__ = {
 }
 
 [node name="OldNumber" type="Sprite" parent="NextFaceAnimation/Old"]
+use_parent_material = true
 texture = ExtResource( 3 )
 hframes = 6
 vframes = 2
@@ -827,12 +839,14 @@ __meta__ = {
 }
 
 [node name="CurrentFace" type="Node2D" parent="."]
+use_parent_material = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Front" type="Sprite" parent="CurrentFace"]
+use_parent_material = true
 position = Vector2( 0, 25 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -25 )
@@ -842,6 +856,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="CurrentFace/Front"]
+use_parent_material = true
 position = Vector2( 0, -5 )
 texture = ExtResource( 1 )
 hframes = 6
@@ -851,6 +866,7 @@ __meta__ = {
 }
 
 [node name="Top" type="Sprite" parent="CurrentFace"]
+use_parent_material = true
 position = Vector2( 0, -5 )
 texture = ExtResource( 4 )
 hframes = 6
@@ -861,6 +877,7 @@ __meta__ = {
 }
 
 [node name="Number" type="Sprite" parent="CurrentFace/Top"]
+use_parent_material = true
 texture = ExtResource( 3 )
 hframes = 6
 vframes = 2
@@ -880,10 +897,14 @@ anims/to_left = SubResource( 6 )
 anims/to_right = SubResource( 3 )
 
 [node name="Button" type="Button" parent="."]
+visible = false
 margin_left = 65.0
 margin_top = 7.0
 margin_right = 107.0
 margin_bottom = 27.0
 text = "run"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
