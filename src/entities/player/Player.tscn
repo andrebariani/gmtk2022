@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/sprites/lightcone.png" type="Texture" id=15]
 [ext_resource path="res://src/entities/player/Lights.gd" type="Script" id=16]
 
+
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 13 )
 shader_param/active = null
@@ -63,6 +64,7 @@ script = ExtResource( 2 )
 WALK_SPEED = 40000
 ROLL_SPEED = 90000
 CHARGE_SPEED = 240000
+dust = ExtResource( 15 )
 
 [node name="Lights" type="Node2D" parent="."]
 visible = false
