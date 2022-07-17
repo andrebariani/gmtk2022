@@ -18,13 +18,11 @@ func begin():
 	e.current_speed = e.charge_speed
 	e.has_dir_control = false
 	e.hitbox.monitoring = true
-	e.toggle_charge(false)
 	starting_load = e.load_amount
 
 
 func run(delta):
 	e.apply_velocity(look_vector * delta)
-	e.spawn_dust(1.5, 25)
 	
 	e.current_speed = lerp(e.charge_speed, e.walk_speed, 
 		1 - e.load_amount/starting_load)
@@ -42,6 +40,7 @@ func before_end(_next_state: String):
 	e.hitbox.set_deferred("monitoring", false)
 	e.take_knockback(look_vector * 1500)
 	
+	e.toggle_charge(false)
 	timer.start()
 
 
