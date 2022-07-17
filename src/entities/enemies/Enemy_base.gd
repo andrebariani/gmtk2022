@@ -6,6 +6,9 @@ onready var knockback_timer = $Knockback_timer
 onready var sprite = $Sprite
 var animation_name = "GOING_DOWN"
 
+export(PackedScene) var dust
+export(PackedScene) var explosion
+
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
@@ -38,8 +41,24 @@ func _ready():
 
 
 func die():
+	var instance = explosion.instance()
+	get_parent().call_deferred("add_child", instance)
+	instance.global_position = global_position
 	emit_signal("enemy_died")
 	queue_free()
+
+
+func spawn_particles():
+	for i in range(6):
+		i *= 0.25
+		i -= 1
+		_spawn_particle(3, Vector2(sin(i), cos(i))*25)
+
+func _spawn_particle(size, variation):
+	var instance = dust.instance()
+	get_parent().call_deferred("add_child", instance)
+	instance.global_position = (global_position + variation)
+	instance.scale = Vector2(size, size)
 
 
 func verify_colision(space_state, width, height, angle, rotate):
