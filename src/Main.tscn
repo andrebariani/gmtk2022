@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/camera/Camera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/fonts/RialtoNF.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sfx/witch-cackle-sound.mp3" type="AudioStream" id=8]
+[ext_resource path="res://src/WorldEnvironment.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/bgm/130_Dr Frenesy - Dance With Me - FREE DOWNLOAD #130.mp3" type="AudioStream" id=10]
 [ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
@@ -80,7 +81,7 @@ grow_horizontal = 2
 grow_vertical = 2
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Hit enemieswith their color!"
+text = "Hit enemies with their color!"
 align = 1
 autowrap = true
 __meta__ = {
@@ -125,6 +126,8 @@ stream = ExtResource( 16 )
 
 [node name="combo_complete" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource( 15 )
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 9 )]
 
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="died" from="YSort/Player" to="." method="_on_Player_died"]

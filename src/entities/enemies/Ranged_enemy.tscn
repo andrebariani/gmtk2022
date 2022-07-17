@@ -39,7 +39,7 @@ speed = 10000.0
 color_number = 1
 
 [node name="Shadow" parent="." index="0"]
-position = Vector2( 0, 19 )
+position = Vector2( 0, 6 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 4 )
