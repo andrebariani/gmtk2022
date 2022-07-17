@@ -22,7 +22,6 @@ func begin():
 	starting_load = e.load_amount
 	if starting_load == e.MAX_CHARGE:
 		e.sprite.set_blink_active(true)
-		e.light.visible = true
 		e.set_invincible(starting_load)
 
 
