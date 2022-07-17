@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/fonts/NightAtTheOperaNF.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/bg/bg_menu.png" type="Texture" id=7]
 [ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=8]
-[ext_resource path="res://assets/bgm/137_Eyewaz - Boundless - FREE DOWNLOAD #137.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/bgm/HighStakesFinal.mp3" type="AudioStream" id=9]
 [ext_resource path="res://src/WorldEnvironment.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
@@ -896,6 +896,7 @@ anims/StagesOpenNormal = SubResource( 15 )
 
 [node name="bgm" type="AudioStreamPlayer" parent="." groups=["BGM"]]
 stream = ExtResource( 9 )
+volume_db = 12.0
 autoplay = true
 bus = "Music"
 
