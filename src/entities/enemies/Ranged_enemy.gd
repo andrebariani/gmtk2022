@@ -11,6 +11,8 @@ onready var Bullet = preload("res://src/entities/enemies/Bullet.tscn")
 onready var BulletSprite = $Sprite/BulletSprite
 
 func on_process(delta):
+	BulletSprite.material.set_shader_param("active", protections > 0)
+	
 	movimentation(delta)
 	if movement_status == KNOCKBACK:
 		aiming = false
@@ -27,6 +29,12 @@ func on_process(delta):
 			BulletSprite.visible = true
 			$Timer_shoot.start(TIME_TO_SHOOT)
 			aiming = true
+
+
+func set_highlighted_color(enemy_type):
+	if BulletSprite:
+		BulletSprite.material.set_shader_param("color", enemies_to_int[enemy_type])
+	.set_highlighted_color(enemy_type)
 
 
 func is_path_to_player_free():
