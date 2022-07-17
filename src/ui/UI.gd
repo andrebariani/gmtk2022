@@ -14,6 +14,7 @@ func _ready():
 	$HealthButton.visible = debug
 	$DiceButton.visible = debug
 	$ComboButton.visible = debug
+	$FinishButton.visible = debug
 
 
 func set_next_combo_face(face_number):

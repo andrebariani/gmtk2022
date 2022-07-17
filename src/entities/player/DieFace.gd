@@ -16,10 +16,10 @@ func roll_left():
 
 func roll_down():
 	var f = faces.duplicate()
-	faces[Constants.FRONT] = f[Constants.TOP]
-	faces[Constants.TOP] = f[Constants.BEHIND]
-	faces[Constants.BEHIND] = f[Constants.DOWN]
-	faces[Constants.DOWN] = f[Constants.FRONT]
+	faces[Constants.BEHIND] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.FRONT]
+	faces[Constants.FRONT] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.BEHIND]
 
 func roll_right():
 	var f = faces.duplicate()
@@ -30,10 +30,10 @@ func roll_right():
 
 func roll_up():
 	var f = faces.duplicate()
-	faces[Constants.BEHIND] = f[Constants.TOP]
-	faces[Constants.TOP] = f[Constants.FRONT]
-	faces[Constants.FRONT] = f[Constants.DOWN]
-	faces[Constants.DOWN] = f[Constants.BEHIND]
+	faces[Constants.FRONT] = f[Constants.TOP]
+	faces[Constants.TOP] = f[Constants.BEHIND]
+	faces[Constants.BEHIND] = f[Constants.DOWN]
+	faces[Constants.DOWN] = f[Constants.FRONT]
 
 
 func get_face(face):
