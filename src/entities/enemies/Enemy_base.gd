@@ -4,6 +4,7 @@ onready var Player = PlayerReference.get_player()
 onready var collision_shape = $CollisionShape2D.shape
 onready var knockback_timer = $Knockback_timer
 onready var sprite = $Sprite
+var animation_name = "GOING_DOWN"
 
 export(PackedScene) var dust
 export(PackedScene) var explosion
@@ -33,7 +34,7 @@ func _process(delta):
 
 
 func _ready():
-	$AnimationPlayer.play("GOING_DOWN")
+	$AnimationPlayer.play(animation_name)
 	movement_status = GOING_DOWN
 	color = Constants.enemy_colors[color_number]
 	on_ready()

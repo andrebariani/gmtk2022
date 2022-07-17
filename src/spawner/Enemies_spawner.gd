@@ -2,7 +2,7 @@ extends Node2D
 
 var spawn_width
 var spawn_height
-const SPAWN_DELAY = 10
+const SPAWN_DELAY = 15
 
 onready var player = PlayerReference.get_player()
 onready var spawn_blocker = get_node("Spawn_blocker")
@@ -46,7 +46,7 @@ func _on_Timer_timeout():
 
 
 func spawn_enemies():
-	var qnt_attack_enemies = round(game_time / 30) + 2
+	var qnt_attack_enemies = round(game_time / 45) + 2
 	var qnt_support_enemies = round(game_time / 60) + 1
 	qnt_enemies_alive += qnt_attack_enemies + qnt_support_enemies
 	
