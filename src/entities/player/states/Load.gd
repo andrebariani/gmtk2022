@@ -14,6 +14,8 @@ func begin():
 		end("Idle")
 		return
 	
+	e.sfx_charge_load.play()
+	
 	center = e.position
 	shaking = true
 
