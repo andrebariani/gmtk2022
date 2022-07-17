@@ -220,7 +220,7 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
-frame = 2
+frame = 4
 playing = true
 script = ExtResource( 12 )
 
@@ -228,6 +228,7 @@ script = ExtResource( 12 )
 one_shot = true
 
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
+[connection signal="enemy_hit" from="StateMachine/Charge" to="." method="_on_Charge_enemy_hit"]
 [connection signal="enemy_killed" from="StateMachine/Charge" to="." method="_on_Charge_enemy_killed"]
 [connection signal="timeout" from="StateMachine/Charge/Timer" to="StateMachine/Charge" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="StateMachine/Charge" method="_on_Hitbox_area_entered"]

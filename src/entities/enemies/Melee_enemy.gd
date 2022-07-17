@@ -2,7 +2,7 @@ extends "res://src/entities/enemies/Enemy_chaser.gd"
 
 var in_range = false
 export (float) var charge_mult
-var charge_direction
+var charge_direction = Vector2.ZERO
 
 onready var damageSprite = $DamageSprite
 

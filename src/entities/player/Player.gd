@@ -4,6 +4,7 @@ class_name Player
 signal rolled()
 signal took_damage()
 signal health_changed(value)
+signal enemy_hit()
 signal enemy_killed()
 signal advanced_combo(face)
 signal triggered_combo()
@@ -216,3 +217,7 @@ func _on_Charge_enemy_killed():
 func _on_InvincibleTimer_timeout():
 	sprite.stop_anim()
 	_hurtbox.set_deferred("disabled", false)
+
+
+func _on_Charge_enemy_hit():
+	emit_signal("enemy_hit")

@@ -99,4 +99,5 @@ func _on_FallHitbox_area_entered(area):
 	# matar inimigos que estavam embaixo dele durante o spawn
 	if movement_status != GOING_DOWN:
 		print(area.get_parent().name)
-		area.get_parent().die()
+		if area.get_parent().has_method("die"):
+			area.get_parent().die()

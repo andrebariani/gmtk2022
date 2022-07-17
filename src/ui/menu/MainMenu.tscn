@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sprites/ui/MenuButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://src/ui/menu/MenuFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/NightAtTheOperaNF.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://assets/bg/clock.png" type="Texture" id=7]
+[ext_resource path="res://assets/bg/bg_menu.png" type="Texture" id=7]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
 
@@ -542,11 +542,12 @@ visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 642.0
+margin_left = 42.0
 margin_top = -234.0
-margin_right = -62.0004
+margin_right = -662.0
 margin_bottom = -52.0002
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
