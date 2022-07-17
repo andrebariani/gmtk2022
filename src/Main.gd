@@ -70,7 +70,18 @@ func _on_Player_enemy_killed():
 
 
 func _on_Player_advanced_combo(face):
-	$sfx/combo_hit.play()
+	if face != 1 and face != 6:
+		match face:
+			2:
+				$sfx/combo_hit.set_pitch_scale(1)
+			3:
+				$sfx/combo_hit.set_pitch_scale(1.05)
+			4:
+				$sfx/combo_hit.set_pitch_scale(1.15)
+			5:
+				$sfx/combo_hit.set_pitch_scale(1.2)
+		$sfx/combo_hit.play()
+		
 	ui.set_next_combo_face(face)
 
 

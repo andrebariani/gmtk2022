@@ -124,9 +124,12 @@ ysort_path = NodePath("../YSort")
 
 [node name="combo_hit" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource( 16 )
+volume_db = -8.0
+pitch_scale = 1.2
 
 [node name="combo_complete" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource( 15 )
+volume_db = -5.0
 
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="died" from="YSort/Player" to="." method="_on_Player_died"]
