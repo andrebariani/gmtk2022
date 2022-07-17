@@ -179,6 +179,7 @@ cooldown = 0.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -192,6 +193,7 @@ margin_right = 1024.0
 margin_bottom = 14.0
 
 [node name="DieSide" type="Label" parent="."]
+visible = false
 margin_left = -58.0
 margin_top = -79.0
 margin_right = 59.0
@@ -218,6 +220,7 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
+frame = 4
 playing = true
 script = ExtResource( 12 )
 

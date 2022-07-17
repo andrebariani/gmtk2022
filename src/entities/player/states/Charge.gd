@@ -57,6 +57,7 @@ func _on_Hitbox_area_entered(area):
 			emit_signal("enemy_killed")
 	
 	if area.has_method("take_knockback"):
+		e.take_knockback(-look_vector * 1500)
 		area.take_knockback(look_vector * e.current_speed)
 		end("Idle")
 
