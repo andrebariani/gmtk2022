@@ -23,6 +23,9 @@ func begin():
 	starting_load = e.load_amount
 	e.sprite.set_blink_active(true)
 	e.set_invincible(starting_load)
+	
+	e.toggle_charge(false)
+	timer.start(cooldown)
 
 
 func run(delta):
@@ -46,8 +49,6 @@ func before_end(_next_state: String):
 	e.hitbox.set_deferred("monitoring", false)
 	e.sprite.set_blink_active(false)
 	e.light.visible = false
-	
-	timer.start()
 
 
 func _on_Hitbox_area_entered(area):

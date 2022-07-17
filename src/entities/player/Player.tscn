@@ -172,7 +172,6 @@ shake_amount = 250
 
 [node name="Charge" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
-cooldown = 0.0
 
 [node name="Timer" type="Timer" parent="StateMachine/Charge"]
 
