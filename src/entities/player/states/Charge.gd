@@ -2,7 +2,7 @@ extends State
 
 signal enemy_killed
 
-export var cooldown = 1
+export var cooldown = 0.5
 
 onready var timer = $Timer
 
