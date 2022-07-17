@@ -65,6 +65,9 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
+[node name="Shadow" parent="." index="10"]
+position = Vector2( 0, 33.5469 )
+
 [node name="FallHitbox" parent="." index="11"]
 collision_layer = 1
 collision_mask = 1
