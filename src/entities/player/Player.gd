@@ -33,6 +33,8 @@ export (int) var CHARGE_SPEED = 3000
 onready var charge_speed = CHARGE_SPEED
 export var MAX_CHARGE = 0.75
 
+export(PackedScene) var dust
+
 var look_vector = Vector2.ZERO
 
 onready var inputHelper = $Inputs
@@ -146,6 +148,15 @@ func toggle_charge(value):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		_pointer.frame = 0
 		_pointer.visible = true
+
+
+func spawn_particles(size, variation):
+	var instance = dust.instance()
+	get_parent().call_deferred("add_child", instance)
+	instance.global_position = (global_position + 
+		Vector2(rand_range(-variation, variation), 
+			rand_range(-variation, variation)))
+	instance.scale = Vector2(size, size)
 
 
 func set_invincible(duration):

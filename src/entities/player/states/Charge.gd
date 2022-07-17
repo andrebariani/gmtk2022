@@ -30,6 +30,7 @@ func begin():
 
 func run(delta):
 	e.apply_velocity(look_vector * delta)
+	e.spawn_particles(1, 20)
 	
 	e.current_speed = lerp(e.charge_speed, e.walk_speed, 
 		1 - e.load_amount/starting_load)
