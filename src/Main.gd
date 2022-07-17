@@ -6,9 +6,12 @@ onready var shaders = $CanvasLayer/ScreenShaders
 onready var player = $YSort/Player
 onready var camera = $YSort/Player/Camera
 onready var gameOverUI = $CanvasLayer/GameOver
+onready var heyFellaLabel = $CanvasLayer/HeyFella/Label
 
 var score = 0
 var game_over = false
+
+var enemy_types_killed = []
 
 func _enter_tree():
 	randomize()
@@ -17,6 +20,8 @@ func _enter_tree():
 
 func _ready():
 	get_tree().paused = false
+	gameOverUI.begin(player.get_global_transform_with_canvas().origin / 
+		get_viewport_rect().size)
 	Input.set_custom_mouse_cursor(GlobalNode.game_mouse)
 
 
@@ -48,7 +53,16 @@ func _on_Player_health_changed(value):
 	ui.set_health(value)
 
 
+func _on_Player_enemy_hit():
+	camera.shake_camera(100)
+
+
 func _on_Player_enemy_killed():
+	var enemy_killed = player.dieFaces.get_current_enemy_type()
+	if !enemy_types_killed.has(enemy_killed):
+		enemy_types_killed.append(enemy_killed)
+		if enemy_types_killed.size() >= 3:
+			heyFellaLabel.text = "Hit enemies with ascending numbers to perform a Combo!"
 	camera.shake_camera(300)
 	add_score(1)
 
@@ -78,4 +92,3 @@ func _on_ScoreTimer_timeout():
 
 func _on_GameOver_game_over_finished():
 	game_over = true
-

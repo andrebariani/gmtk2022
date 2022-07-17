@@ -1,4 +1,5 @@
 extends Node2D
+class_name DiceAnimation
 
 export var top_num: int = 1
 export var front_num: int = 2
@@ -29,13 +30,19 @@ onready var behind_face_top_num: Sprite = $NextFaceAnimation/Top/Number
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 func move_dice(direction, number: int, front_number: int = 0) -> void:
-	if Constants.FRONT:
-		front_number =  curr_face_top.frame + 1
+	reset_animation()
 	_set_current_face_as_old()
 	_set_new_face_with_direction(direction, number, front_number)
 	_hide_current_face()
 	_update_current_face(number, front_number)
 	_play_transition_animation(direction)
+
+
+func reset_animation():
+	anim_player.play("RESET")
+
+func move_anim():
+	anim_player.play("move")
 
 
 func _ready():
@@ -96,10 +103,12 @@ func _play_transition_animation(direction):
 			anim_player.play("to_right")
 		Constants.LEFT:
 			anim_player.play("to_left")
+		# troquei pq tava invertido vvvv
 		Constants.BEHIND:
-			anim_player.play("to_behind")
-		Constants.FRONT:
 			anim_player.play("to_front")
+		Constants.FRONT:
+			anim_player.play("to_behind")
 
 func _on_Button_pressed():
 	move_dice(Constants.FRONT, 1)
+

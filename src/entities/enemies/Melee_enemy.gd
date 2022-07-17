@@ -2,12 +2,12 @@ extends "res://src/entities/enemies/Enemy_chaser.gd"
 
 var in_range = false
 export (float) var charge_mult
-var charge_direction
+var charge_direction = Vector2.ZERO
 
 onready var damageSprite = $DamageSprite
 
 func _ready():
-	$Hitbox/CollisionShape2D.disabled = true
+	$Hitbox.monitoring = true
 
 func on_process(delta):
 	if movement_status == KNOCKBACK:
@@ -36,14 +36,14 @@ func _on_Timer_charging_timeout():
 	if movement_status != KNOCKBACK:
 		movement_status = CHARGE
 		damageSprite.visible = true
-		$Hitbox/CollisionShape2D.disabled = false
+		$Hitbox.monitoring = true
 		charge_direction = global_position.direction_to(Player.global_position)
 		$Timer_charge.start()
 
 func _on_Timer_charge_timeout():
+	$Hitbox.set_deferred("monitoring", false)
+	damageSprite.visible = false
 	if movement_status != KNOCKBACK:
-		damageSprite.visible = false
-		$Hitbox/CollisionShape2D.disabled = true
 		$Timer_cd.start()
 		movement_status = NORMAL
 

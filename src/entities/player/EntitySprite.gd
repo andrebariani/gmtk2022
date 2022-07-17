@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 export(Color) var blink_color = Color(0.569, 0.227, 0.321)
 onready var blink_vector = Vector3(blink_color.r, blink_color.g, blink_color.b)

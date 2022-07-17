@@ -4,6 +4,7 @@ class_name Player
 signal rolled()
 signal took_damage()
 signal health_changed(value)
+signal enemy_hit()
 signal enemy_killed()
 signal advanced_combo(face)
 signal triggered_combo()
@@ -30,6 +31,9 @@ var is_rolling = false
 
 export (int) var CHARGE_SPEED = 3000
 onready var charge_speed = CHARGE_SPEED
+export var MAX_CHARGE = 0.75
+
+export(PackedScene) var dust
 
 var look_vector = Vector2.ZERO
 
@@ -37,11 +41,13 @@ onready var inputHelper = $Inputs
 onready var stateMachine = $StateMachine
 onready var dieFaces = $DieFaces
 onready var hitbox = $Hitbox
+onready var sprite = $Sprite
+onready var light = $Sprite/Light2D
 
 onready var _invincibleTimer = $InvincibleTimer
-onready var _pointer = $Pointer
-onready var _sprite = $Sprite
 onready var _hurtbox = $Hurtbox
+onready var _pointer = $Pointer
+onready var _diceAnim : DiceAnimation = $Sprite/DiceAnimation
 onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
@@ -110,9 +116,8 @@ func take_damage():
 	if dead or _invincibleTimer.time_left > 0:
 		return
 	
-	_sprite.blink_anim()
-	_hurtbox.call_deferred("disabled", true)
-	_invincibleTimer.start(INVINCIBLE_DURATION)
+	sprite.blink_anim()
+	set_invincible(INVINCIBLE_DURATION)
 	emit_signal("took_damage")
 	
 	set_health(health - 1)
@@ -143,6 +148,25 @@ func toggle_charge(value):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		_pointer.frame = 0
 		_pointer.visible = true
+
+
+func spawn_particles(size, variation):
+	var instance = dust.instance()
+	get_parent().call_deferred("add_child", instance)
+	instance.global_position = (global_position + 
+		Vector2(rand_range(-variation, variation), 
+			rand_range(-variation, variation)))
+	instance.scale = Vector2(size, size)
+
+
+func set_invincible(duration):
+	_hurtbox.call_deferred("disabled", true)
+	_invincibleTimer.start(duration)
+
+
+func deactivate_invincible():
+	sprite.stop_anim()
+	_hurtbox.set_deferred("disabled", false)
 
 
 func set_enabler(enabler, value):
@@ -178,6 +202,8 @@ func _on_Roll_rolled(direction):
 	else:
 		dieFaces.roll_down()
 	
+	_diceAnim.move_dice(direction, dieFaces.get_current_face(), 
+		dieFaces.get_face(Constants.FRONT))
 	current_enemy_type = dieFaces.get_current_enemy_type()
 	_light_front.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.FRONT)]
 	_light_behind.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.BEHIND)]
@@ -189,9 +215,7 @@ func _on_Roll_rolled(direction):
 func _on_Charge_enemy_killed():
 	toggle_charge(true)
 	emit_signal("enemy_killed")
-	_hurtbox.call_deferred("disabled", true)
-	_invincibleTimer.start(INVINCIBLE_DURATION/2)
-	
+	set_invincible(INVINCIBLE_DURATION/2)
 	
 	if dieFaces.get_current_face() == next_combo_face:
 		next_combo_face += 1
@@ -207,5 +231,8 @@ func _on_Charge_enemy_killed():
 
 
 func _on_InvincibleTimer_timeout():
-	_sprite.stop_anim()
-	_hurtbox.call_deferred("disabled", false)
+	deactivate_invincible()
+
+
+func _on_Charge_enemy_hit():
+	emit_signal("enemy_hit")

@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/entities/state_machine/StateMachine.gd" type="Script" id=1]
 [ext_resource path="res://src/entities/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/entities/player/states/Move.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/player/states/Idle.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/player/states/Roll.gd" type="Script" id=5]
-[ext_resource path="res://assets/dice/dice.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/circle.png" type="Texture" id=6]
 [ext_resource path="res://src/entities/player/Inputs.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/player/DieFace.gd" type="Script" id=8]
 [ext_resource path="res://src/entities/player/states/Load.gd" type="Script" id=9]
@@ -16,11 +16,29 @@
 [ext_resource path="res://src/entities/player/EntitySprite.gd" type="Script" id=14]
 [ext_resource path="res://assets/sprites/lightcone.png" type="Texture" id=15]
 [ext_resource path="res://src/entities/player/Lights.gd" type="Script" id=16]
+[ext_resource path="res://src/entities/player/animation/DiceAnimation.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/entities/player/particles/Particles.tscn" type="PackedScene" id=18]
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 13 )
 shader_param/active = null
 shader_param/color = null
+
+[sub_resource type="Animation" id=11]
+resource_name = "Shimmer"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 2.0, 1.0 ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 15 )
@@ -64,6 +82,8 @@ MAX_HEALTH = 4
 WALK_SPEED = 40000
 ROLL_SPEED = 90000
 CHARGE_SPEED = 240000
+MAX_CHARGE = 1.0
+dust = ExtResource( 18 )
 
 [node name="Lights" type="Node2D" parent="."]
 visible = false
@@ -71,46 +91,59 @@ script = ExtResource( 16 )
 
 [node name="Behind" type="Light2D" parent="Lights"]
 light_mask = 2
-position = Vector2( 0, -36 )
+position = Vector2( 0, -70 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 color = Color( 1, 0, 0, 1 )
 range_item_cull_mask = 2
 
 [node name="Right" type="Light2D" parent="Lights"]
 light_mask = 2
-position = Vector2( 37, 0 )
+position = Vector2( 57, 5 )
 rotation = 1.5708
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 color = Color( 1, 0, 0, 1 )
 range_item_cull_mask = 2
 
 [node name="Left" type="Light2D" parent="Lights"]
 light_mask = 2
-position = Vector2( -37, 0 )
+position = Vector2( -67, 9 )
 rotation = -1.5708
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 color = Color( 1, 0, 0, 1 )
 range_item_cull_mask = 2
 
 [node name="Front" type="Light2D" parent="Lights"]
 light_mask = 2
-position = Vector2( 1, 38 )
+position = Vector2( 1, 84 )
 rotation = -3.14159
+scale = Vector2( 2, 2 )
 texture = ExtResource( 15 )
 color = Color( 1, 0, 0, 1 )
 range_item_cull_mask = 2
 
-[node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 9 )
-texture = ExtResource( 6 )
+[node name="Sprite" type="Node2D" parent="."]
+material = SubResource( 10 )
 script = ExtResource( 14 )
-blink_color = Color( 0.568627, 0.227451, 0.321569, 1 )
+
+[node name="Light2D" type="Light2D" parent="Sprite"]
+visible = false
+texture = ExtResource( 6 )
+color = Color( 1, 0.701961, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Light2D"]
+autoplay = "Shimmer"
+anims/Shimmer = SubResource( 11 )
+
+[node name="DiceAnimation" parent="Sprite" instance=ExtResource( 17 )]
+use_parent_material = true
 
 [node name="Tween" type="Tween" parent="Sprite"]
 
 [node name="Hurtbox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 5 )
+position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -147,6 +180,7 @@ script = ExtResource( 10 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -160,11 +194,13 @@ margin_right = 1024.0
 margin_bottom = 14.0
 
 [node name="DieSide" type="Label" parent="."]
+visible = false
 margin_left = -58.0
 margin_top = -79.0
 margin_right = 59.0
 margin_bottom = -64.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -185,15 +221,15 @@ __meta__ = {
 visible = false
 scale = Vector2( 2, 2 )
 frames = SubResource( 8 )
-frame = 4
+frame = 1
 playing = true
 script = ExtResource( 12 )
 
 [node name="InvincibleTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="tween_all_completed" from="Sprite/Tween" to="Sprite" method="_on_Tween_tween_all_completed"]
 [connection signal="rolled" from="StateMachine/Roll" to="." method="_on_Roll_rolled"]
+[connection signal="enemy_hit" from="StateMachine/Charge" to="." method="_on_Charge_enemy_hit"]
 [connection signal="enemy_killed" from="StateMachine/Charge" to="." method="_on_Charge_enemy_killed"]
 [connection signal="timeout" from="StateMachine/Charge/Timer" to="StateMachine/Charge" method="_on_Timer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="StateMachine/Charge" method="_on_Hitbox_area_entered"]
