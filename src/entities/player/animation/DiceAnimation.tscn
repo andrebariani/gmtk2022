@@ -813,7 +813,6 @@ tracks/9/keys = {
 
 [node name="DiceAnimation" type="Node2D"]
 script = ExtResource( 5 )
-top_num = 6
 
 [node name="NextFaceAnimation" type="Node2D" parent="."]
 visible = false
