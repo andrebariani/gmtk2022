@@ -1,27 +1,19 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/camera/Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/shaders/ScreenShader.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ui/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/Main.gd" type="Script" id=5]
-[ext_resource path="res://src/shaders/burano.png" type="Texture" id=6]
+[ext_resource path="res://src/entities/enemies/Ranged_enemy.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/entities/enemies/Melee_enemy.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
 
 [node name="Main" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 5 )
-
-[node name="Burano" type="Sprite" parent="."]
-position = Vector2( 10, 17 )
-texture = ExtResource( 6 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="TileMap" type="TileMap" parent="."]
 light_mask = 3
@@ -43,7 +35,8 @@ zoom = Vector2( 2, 2 )
 
 [node name="Melee_enemy" parent="YSort" instance=ExtResource( 9 )]
 position = Vector2( 542, -20 )
-collision_layer = 2
+
+[node name="Ranged_enemy" parent="YSort" instance=ExtResource( 6 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 1
@@ -68,9 +61,6 @@ pause_mode = 2
 [node name="ScoreTimer" type="Timer" parent="."]
 pause_mode = 1
 autostart = true
-
-[node name="Enemies_spawner" parent="." instance=ExtResource( 11 )]
-ysort_path = NodePath("../YSort")
 
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="died" from="YSort/Player" to="." method="_on_Player_died"]
