@@ -62,8 +62,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="gmtk_2022"
-run/main_scene="res://src/Main.tscn"
+config/name="ColorHex"
+run/main_scene="res://src/ui/menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

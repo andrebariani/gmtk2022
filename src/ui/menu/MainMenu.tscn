@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/sprites/ui/MenuButtonPressed.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/ui/MenuButton.png" type="Texture" id=2]
@@ -7,8 +7,71 @@
 [ext_resource path="res://src/ui/menu/MenuFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/NightAtTheOperaNF.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://assets/bg/bg_menu.png" type="Texture" id=7]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=8]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 8 )
+shader_param/active = false
+shader_param/saturation = 1.0
+shader_param/color = 0
+
+[sub_resource type="Animation" id=23]
+resource_name = "Background"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/saturation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.992157, 0.992157, 0.992157, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/saturation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "Hover"
@@ -393,13 +456,22 @@ __meta__ = {
 }
 
 [node name="Background" type="TextureRect" parent="."]
+modulate = Color( 0.992157, 0.992157, 0.992157, 1 )
+material = SubResource( 22 )
 margin_right = 512.0
 margin_bottom = 300.0
 rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+autoplay = "Background"
+playback_speed = 0.25
+anims/Background = SubResource( 23 )
+anims/RESET = SubResource( 24 )
 
 [node name="Menu" type="VBoxContainer" parent="."]
 anchor_left = 0.5
