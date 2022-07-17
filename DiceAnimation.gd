@@ -42,7 +42,8 @@ func reset_animation():
 	anim_player.play("RESET")
 
 func move_anim():
-	anim_player.play("move")
+	#anim_player.play("move")
+	pass
 
 
 func _ready():

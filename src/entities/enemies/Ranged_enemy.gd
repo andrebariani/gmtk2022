@@ -1,4 +1,4 @@
-extends "res://src/entities/enemies/Enemy_chaser.gd"
+extends EnemyChaser
 
 var aiming = false
 var in_range = false
@@ -8,7 +8,7 @@ export var TIME_TO_SHOOT = 2
 
 # onready var shoot_animation = $ShootAnimation
 onready var Bullet = preload("res://src/entities/enemies/Bullet.tscn")
-
+onready var BulletSprite = $Sprite/BulletSprite
 
 func on_process(delta):
 	movimentation(delta)
@@ -24,6 +24,7 @@ func on_process(delta):
 	elif in_range:
 		if is_path_to_player_free():
 			movement_status = STOP
+			BulletSprite.visible = true
 			$Timer_shoot.start(TIME_TO_SHOOT)
 			aiming = true
 
@@ -42,6 +43,7 @@ func _on_Range_body_entered(_body):
 func _on_Range_body_exited(_body):
 	in_range = false
 
+
 func _on_Timer_shoot_timeout():
 	if movement_status != KNOCKBACK:
 		shoot()
@@ -52,8 +54,11 @@ func _on_Timer_shoot_timeout():
 		if movement_status != KNOCKBACK:
 			movement_status = NORMAL
 
+
 func shoot():
 	# shoot_animation.play("Shoot")
 	var bullet = Bullet.instance()
-	bullet.initialize_bullet(global_position, global_position.direction_to(Player.global_position))
+	bullet.initialize_bullet(BulletSprite.global_position, 
+		BulletSprite.global_position.direction_to(Player.global_position))
+	BulletSprite.visible = false
 	get_parent().add_child(bullet)

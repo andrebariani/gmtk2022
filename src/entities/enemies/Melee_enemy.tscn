@@ -3,7 +3,7 @@
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=2]
 [ext_resource path="res://src/entities/enemies/Melee_enemy.gd" type="Script" id=3]
-[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://assets/chips/chip_colors.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/enemies/DamageDealer.tres" type="Material" id=5]
 
 [sub_resource type="ShaderMaterial" id=6]
@@ -13,14 +13,14 @@ shader_param/active = false
 shader_param/saturation = 0.35
 shader_param/color = 0
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 31.5, 31.25 )
+[sub_resource type="CircleShape2D" id=7]
+radius = 21.1793
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 31.5, 31.25 )
+[sub_resource type="CircleShape2D" id=8]
+radius = 22.0355
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 33.25, 34 )
+[sub_resource type="CircleShape2D" id=9]
+radius = 23.099
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 200.0
@@ -28,39 +28,41 @@ radius = 200.0
 [node name="Melee_enemy" instance=ExtResource( 1 )]
 light_mask = 3
 scale = Vector2( 2, 2 )
+collision_layer = 514
 collision_mask = 6
 script = ExtResource( 3 )
 speed = 15000.0
 charge_mult = 7.0
 
-[node name="Sprite" parent="." index="0"]
-material = SubResource( 6 )
+[node name="Shadow" parent="." index="0"]
+position = Vector2( 0, 6 )
 
 [node name="DamageSprite" type="Sprite" parent="." index="1"]
 visible = false
 material = ExtResource( 5 )
 texture = ExtResource( 4 )
+hframes = 4
 
-[node name="CollisionShape2D" parent="." index="2"]
-visible = false
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 6 )
+texture = ExtResource( 4 )
+hframes = 4
+
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2( -0.5, -0.25 )
-shape = SubResource( 1 )
-
-[node name="Hurtbox" parent="." index="3"]
-visible = false
+shape = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, 0.25 )
-shape = SubResource( 4 )
+shape = SubResource( 8 )
 
 [node name="Hitbox" type="Area2D" parent="." index="5"]
-visible = false
 collision_layer = 64
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2( -0.75, 1 )
-shape = SubResource( 5 )
+shape = SubResource( 9 )
 
 [node name="Range" type="Area2D" parent="." index="6"]
 visible = false
@@ -80,9 +82,6 @@ one_shot = true
 [node name="Timer_cd" type="Timer" parent="." index="9"]
 wait_time = 3.0
 one_shot = true
-
-[node name="Shadow" parent="." index="11"]
-position = Vector2( 0, 33.5469 )
 
 [node name="FallHitbox" parent="." index="12"]
 visible = false
