@@ -1,4 +1,5 @@
 extends Node2D
+class_name DiceAnimation
 
 export var top_num: int = 1
 export var front_num: int = 2
@@ -96,10 +97,11 @@ func _play_transition_animation(direction):
 			anim_player.play("to_right")
 		Constants.LEFT:
 			anim_player.play("to_left")
+		# troquei pq tava invertido vvvv
 		Constants.BEHIND:
-			anim_player.play("to_behind")
-		Constants.FRONT:
 			anim_player.play("to_front")
+		Constants.FRONT:
+			anim_player.play("to_behind")
 
 func _on_Button_pressed():
 	move_dice(Constants.FRONT, 1)
