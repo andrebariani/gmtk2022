@@ -67,9 +67,9 @@ __meta__ = {
 }
 
 [node name="Health2" type="TextureRect" parent="Healthbar/Slots"]
-margin_left = 54.0
+margin_left = 51.0
 margin_top = 24.0
-margin_right = 87.0
+margin_right = 84.0
 margin_bottom = 35.0
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 16, 6 )
@@ -79,9 +79,21 @@ __meta__ = {
 }
 
 [node name="Health3" type="TextureRect" parent="Healthbar/Slots"]
-margin_left = 114.0
+margin_left = 106.0
 margin_top = 24.0
-margin_right = 147.0
+margin_right = 139.0
+margin_bottom = 35.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 16, 6 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health4" type="TextureRect" parent="Healthbar/Slots"]
+margin_left = 161.0
+margin_top = 24.0
+margin_right = 194.0
 margin_bottom = 35.0
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 16, 6 )
@@ -94,11 +106,11 @@ __meta__ = {
 
 [node name="Detail" type="TextureRect" parent="Healthbar"]
 modulate = Color( 1, 0.921569, 0.341176, 1 )
-margin_left = -24.0
-margin_top = -2.0
-margin_right = 83.0
-margin_bottom = 4.0
-rect_scale = Vector2( 2, 2 )
+margin_left = -25.0
+margin_top = -3.0
+margin_right = 101.0
+margin_bottom = 3.0
+rect_scale = Vector2( 2.5, 2 )
 texture = ExtResource( 8 )
 flip_h = true
 flip_v = true

@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 signal rolled()
+signal took_damage()
 signal health_changed(value)
 signal enemy_killed()
 signal advanced_combo(face)
@@ -112,6 +113,7 @@ func take_damage():
 	_sprite.blink_anim()
 	_hurtbox.call_deferred("disabled", true)
 	_invincibleTimer.start(INVINCIBLE_DURATION)
+	emit_signal("took_damage")
 	
 	set_health(health - 1)
 	if health <= 0:

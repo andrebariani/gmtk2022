@@ -71,6 +71,7 @@ ysort_path = NodePath("../YSort")
 [connection signal="enemy_killed" from="YSort/Player" to="." method="_on_Player_enemy_killed"]
 [connection signal="health_changed" from="YSort/Player" to="." method="_on_Player_health_changed"]
 [connection signal="rolled" from="YSort/Player" to="." method="_on_Player_rolled"]
+[connection signal="took_damage" from="YSort/Player" to="." method="_on_Player_took_damage"]
 [connection signal="triggered_combo" from="YSort/Player" to="." method="_on_Player_triggered_combo"]
 [connection signal="game_over_finished" from="CanvasLayer/ScreenShaders" to="." method="_on_ScreenShaders_game_over_finished"]
 [connection signal="game_over_finished" from="CanvasLayer/GameOver" to="." method="_on_GameOver_game_over_finished"]

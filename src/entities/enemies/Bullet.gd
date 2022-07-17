@@ -26,5 +26,5 @@ func _on_Hitbox_body_entered(body):
 	if body.has_method("take_damage"):
 		body.take_damage()
 	if body.has_method("take_knockback"):
-		body.take_knockback(velocity * speed/10)
+		body.take_knockback(velocity * speed/5)
 	queue_free()

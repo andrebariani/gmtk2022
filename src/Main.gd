@@ -49,18 +49,22 @@ func _on_Player_health_changed(value):
 
 
 func _on_Player_enemy_killed():
+	camera.shake_camera(300)
 	add_score(1)
 
 
 func _on_Player_advanced_combo(face):
-	add_score(2)
 	ui.set_next_combo_face(face)
 
 
 func _on_Player_triggered_combo():
+	camera.shake_camera(600)
 	add_score(18)
 	ui.trigger_combo()
 
+
+func _on_Player_took_damage():
+	camera.shake_camera(400)
 
 func _on_Player_died():
 	get_tree().paused = true
@@ -74,3 +78,4 @@ func _on_ScoreTimer_timeout():
 
 func _on_GameOver_game_over_finished():
 	game_over = true
+
