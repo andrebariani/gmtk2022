@@ -65,6 +65,7 @@ func _on_Timer_shoot_timeout():
 
 func shoot():
 	# shoot_animation.play("Shoot")
+	$shoot.play()
 	var bullet = Bullet.instance()
 	bullet.initialize_bullet(BulletSprite.global_position, 
 		BulletSprite.global_position.direction_to(Player.global_position))

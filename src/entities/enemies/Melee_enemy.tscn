@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=2]
 [ext_resource path="res://src/entities/enemies/Melee_enemy.gd" type="Script" id=3]
 [ext_resource path="res://assets/chips/chip_colors.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/enemies/DamageDealer.tres" type="Material" id=5]
+[ext_resource path="res://assets/sfx/sfx_charge2.mp3" type="AudioStream" id=6]
+[ext_resource path="res://assets/sfx/sfx_load.mp3" type="AudioStream" id=7]
 
 [sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
@@ -87,6 +89,16 @@ one_shot = true
 visible = false
 collision_layer = 1
 collision_mask = 1
+
+[node name="charge" type="AudioStreamPlayer2D" parent="." index="13"]
+stream = ExtResource( 6 )
+volume_db = -2.0
+pitch_scale = 3.0
+
+[node name="charge_load" type="AudioStreamPlayer2D" parent="." index="14"]
+stream = ExtResource( 7 )
+volume_db = -5.0
+pitch_scale = 2.0
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]

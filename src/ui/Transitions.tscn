@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/ui/Transitions.gd" type="Script" id=1]
-[ext_resource path="res://assets/sfx/vfx_mechashift_woosh.mp3" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/game_start.mp3" type="AudioStream" id=2]
 
 [sub_resource type="Animation" id=4]
 resource_name = "BlackIn"
@@ -173,7 +173,6 @@ anims/Reset = SubResource( 5 )
 
 [node name="woosh" type="AudioStreamPlayer" parent="." groups=["SFX"]]
 stream = ExtResource( 2 )
-volume_db = -5.0
-pitch_scale = 2.0
+volume_db = -10.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
