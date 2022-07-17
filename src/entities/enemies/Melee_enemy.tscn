@@ -1,12 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/shaders/BlackWhite.gdshader" type="Shader" id=2]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=2]
 [ext_resource path="res://src/entities/enemies/Melee_enemy.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/enemies/DamageDealer.tres" type="Material" id=5]
 
 [sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/active = false
+shader_param/saturation = 0.0
+shader_param/color = 1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.5, 31.25 )
@@ -31,15 +36,25 @@ charge_mult = 7.0
 [node name="Sprite" parent="." index="0"]
 material = SubResource( 7 )
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="DamageSprite" type="Sprite" parent="." index="1"]
+visible = false
+material = ExtResource( 5 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
 position = Vector2( -0.5, -0.25 )
 shape = SubResource( 1 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( 0, 0.25 )
 shape = SubResource( 4 )
 
-[node name="Hitbox" type="Area2D" parent="." index="4"]
+[node name="Hitbox" type="Area2D" parent="." index="5"]
+visible = false
 collision_layer = 64
 collision_mask = 8
 
@@ -47,28 +62,30 @@ collision_mask = 8
 position = Vector2( -0.75, 1 )
 shape = SubResource( 5 )
 
-[node name="Range" type="Area2D" parent="." index="5"]
+[node name="Range" type="Area2D" parent="." index="6"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]
 shape = SubResource( 3 )
 
-[node name="Timer_charging" type="Timer" parent="." index="6"]
+[node name="Timer_charging" type="Timer" parent="." index="7"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Timer_charge" type="Timer" parent="." index="7"]
+[node name="Timer_charge" type="Timer" parent="." index="8"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Timer_cd" type="Timer" parent="." index="8"]
+[node name="Timer_cd" type="Timer" parent="." index="9"]
 wait_time = 3.0
 one_shot = true
 
-[node name="Shadow" parent="." index="10"]
+[node name="Shadow" parent="." index="11"]
 position = Vector2( 0, 33.5469 )
 
-[node name="FallHitbox" parent="." index="11"]
+[node name="FallHitbox" parent="." index="12"]
+visible = false
 collision_layer = 1
 collision_mask = 1
 
