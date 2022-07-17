@@ -18,6 +18,7 @@ var attack_enemies = [
 	preload('res://src/entities/enemies/Ranged_enemy.tscn'),
 	preload('res://src/entities/enemies/Melee_enemy.tscn')
 ]
+var super_enemy = preload("res://src/entities/enemies/Super_enemy.tscn")
 
 var game_time = 0
 var qnt_enemies_alive = 0
@@ -46,9 +47,10 @@ func _on_Timer_timeout():
 
 
 func spawn_enemies():
-	var qnt_attack_enemies = round(game_time / 45) + 2
-	var qnt_support_enemies = round(game_time / 60) + 1
-	qnt_enemies_alive += qnt_attack_enemies + qnt_support_enemies
+	var qnt_attack_enemies = round(game_time / 60) + 2
+	var qnt_support_enemies = round(game_time / 80) + 1
+	var qnt_super_enemies = round(game_time / 120)
+	qnt_enemies_alive += qnt_attack_enemies + qnt_support_enemies + qnt_super_enemies
 	
 	spawn_enemy(attack_enemies[0])
 	spawn_enemy(attack_enemies[1])
@@ -59,6 +61,9 @@ func spawn_enemies():
 	for _i in range(qnt_support_enemies):
 		var selected = support_enemies[rng.randi_range(0, len(support_enemies) - 1)]
 		spawn_enemy(selected)
+	
+	for _i in range(qnt_super_enemies):
+		spawn_enemy(super_enemy)
 
 
 func spawn_enemy(Enemy):

@@ -20,8 +20,10 @@ func on_process(delta):
 			movement_status = CHARGING
 			$Timer_charging.start()
 	elif movement_status == CHARGING:
+		$charge_load.play()
 		move_and_slide(-global_position.direction_to(Player.global_position) * speed * delta)
 	elif movement_status == CHARGE:
+		$charge.play()
 		move_and_slide(charge_direction * speed * delta * charge_mult)
 
 
