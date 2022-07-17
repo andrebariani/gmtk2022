@@ -1,6 +1,7 @@
 extends Node2D
 
 var current_enemy
+signal enemy_died(enemy)
 
 # onready var melee_sprite = preload("")
 # onready var ranged_sprite = preload("")
@@ -37,4 +38,5 @@ func _on_enemy_ranged_death():
 	get_parent().call_deferred("add_child", current_enemy)
 
 func _on_enemy_protector_death():
+	emit_signal("enemy_died")
 	queue_free()

@@ -8,7 +8,7 @@
 [ext_resource path="res://assets/fonts/RialtoNF.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/ui/menu/Pause.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/sfx/witch-cackle-sound.mp3" type="AudioStream" id=8]
-[ext_resource path="res://src/entities/enemies/Super_enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/spawner/Enemies_spawner.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/bgm/130_Dr Frenesy - Dance With Me - FREE DOWNLOAD #130.mp3" type="AudioStream" id=10]
 [ext_resource path="res://src/tileset/TableTileset.tres" type="TileSet" id=12]
 [ext_resource path="res://src/ui/GameOver.tscn" type="PackedScene" id=13]
@@ -45,9 +45,6 @@ tile_data = PoolIntArray( -3670112, 0, 0, -3670111, 0, 1, -3670110, 0, 3, -36701
 
 [node name="YSort" type="YSort" parent="."]
 pause_mode = 1
-
-[node name="Super_enemy" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 417, 21 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 
@@ -114,6 +111,9 @@ bus = "Sound"
 stream = ExtResource( 10 )
 autoplay = true
 bus = "Music"
+
+[node name="Enemies_spawner" parent="." instance=ExtResource( 9 )]
+ysort_path = NodePath("../YSort")
 
 [connection signal="advanced_combo" from="YSort/Player" to="." method="_on_Player_advanced_combo"]
 [connection signal="died" from="YSort/Player" to="." method="_on_Player_died"]
