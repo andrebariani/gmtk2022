@@ -897,7 +897,6 @@ anims/to_left = SubResource( 6 )
 anims/to_right = SubResource( 3 )
 
 [node name="Button" type="Button" parent="."]
-visible = false
 margin_left = 65.0
 margin_top = 7.0
 margin_right = 107.0
