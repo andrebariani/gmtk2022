@@ -213,6 +213,6 @@ func _on_Charge_enemy_killed():
 	emit_signal("advanced_combo", next_combo_face)
 
 
-func _on_invincibleTimer_timeout():
+func _on_InvincibleTimer_timeout():
 	sprite.stop_anim()
-	_hurtbox.call_deferred("disabled", false)
+	_hurtbox.set_deferred("disabled", false)
