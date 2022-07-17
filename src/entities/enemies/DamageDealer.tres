@@ -1,8 +1,3 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
-
-[ext_resource path="res://src/entities/player/damage_blink.tres" type="Shader" id=1]
+[gd_resource type="ShaderMaterial" format=2]
 
 [resource]
-shader = ExtResource( 1 )
-shader_param/active = true
-shader_param/color = Vector3( 0.57, 0.23, 0.32 )

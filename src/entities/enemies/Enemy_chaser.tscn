@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.gd" type="Script" id=2]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/active = false
+shader_param/saturation = 0.35
+shader_param/color = 0
 
 [node name="Enemy_chaser" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 1 )
