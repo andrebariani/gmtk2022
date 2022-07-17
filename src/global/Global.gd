@@ -2,7 +2,7 @@ extends Node
 
 signal on_cutscene_changed(in_cutscene)
 
-var sound_volume = 20
+var sound_volume = 25
 var music_volume = 20
 var current_stage = 0
 var should_advance_stage = false
