@@ -1,16 +1,23 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/Ranged_enemy.gd" type="Script" id=2]
 [ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=3]
 [ext_resource path="res://assets/chips/chip_colors.png" type="Texture" id=4]
 [ext_resource path="res://assets/chips/chip.png" type="Texture" id=5]
+[ext_resource path="res://src/shaders/OrangeSaturation.gdshader" type="Shader" id=6]
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/active = false
 shader_param/saturation = 0.35
+shader_param/color = 0
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 6 )
+shader_param/active = false
+shader_param/saturation = 1.0
 shader_param/color = 0
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -55,7 +62,7 @@ hframes = 4
 frame = 1
 
 [node name="BulletSprite" type="Sprite" parent="Sprite" index="2"]
-use_parent_material = true
+material = SubResource( 5 )
 position = Vector2( 2.5, -21 )
 texture = ExtResource( 5 )
 
