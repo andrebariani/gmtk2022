@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/sprites/ui/MenuButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://src/ui/menu/MenuFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/fonts/NightAtTheOperaNF.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://src/shaders/burano.png" type="Texture" id=7]
+[ext_resource path="res://assets/bg/clock.png" type="Texture" id=7]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=15]
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=16]
 
@@ -393,11 +393,9 @@ __meta__ = {
 }
 
 [node name="Background" type="TextureRect" parent="."]
-modulate = Color( 0.403922, 0.286275, 0.286275, 1 )
-margin_left = 91.0
-margin_top = -2.0
-margin_right = 891.0
-margin_bottom = 598.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
