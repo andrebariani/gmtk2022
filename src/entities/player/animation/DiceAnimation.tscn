@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/dice/dice_faces_side_transparent.png" type="Texture" id=1]
 [ext_resource path="res://assets/dice/dice_colors.png" type="Texture" id=2]
@@ -214,6 +214,45 @@ tracks/16/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("../../CurrentFace:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../CurrentFace:scale")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../CurrentFace:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -1073,6 +1112,7 @@ root_node = NodePath("../NextFaceAnimation/OldFront")
 playback_speed = 3.0
 anims/Base = SubResource( 1 )
 anims/RESET = SubResource( 2 )
+anims/move = SubResource( 8 )
 anims/to_behind = SubResource( 7 )
 anims/to_behind_ = SubResource( 4 )
 anims/to_front = SubResource( 5 )

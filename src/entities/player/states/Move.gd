@@ -1,5 +1,7 @@
 extends State
-	
+
+onready var dice_animation = get_node("../../Sprite/DiceAnimation")
+
 func run(delta):
 	if !e.enablers.move:
 		end("Idle")
@@ -13,3 +15,4 @@ func run(delta):
 		end("Roll")
 	elif e.get_input('charge'):
 		end("Load")
+	dice_animation.move_anim()
