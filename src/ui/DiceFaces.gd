@@ -5,7 +5,7 @@ export var duration = 0.5
 
 onready var face_positions = {
 	Constants.TOP:[Vector2(0, 0), Vector2(1, 1)],
-	Constants.DOWN:[Vector2(16, 16), Vector2(0.5, 0.5)],
+	Constants.DOWN:[Vector2(10, 10), Vector2(0.5, 0.5)],
 	Constants.LEFT:[Vector2(-face_distance, 0), Vector2(1, 1)],
 	Constants.RIGHT:[Vector2(face_distance, 0), Vector2(1, 1)],
 	Constants.BEHIND:[Vector2(0, -face_distance), Vector2(1, 1)],

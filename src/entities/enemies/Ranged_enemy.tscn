@@ -1,8 +1,43 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/Ranged_enemy.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+uniform float saturation = 1.0;
+uniform int color = 0; // 0 for red, 1 for green, 2 for blue
+
+void fragment() {
+	vec3 c = texture(TEXTURE, UV).rgb;
+	
+	if (active) {
+		float avg = (c.r + c.g + c.b) / 3.0;
+		COLOR.rgb = vec3(avg);
+	}
+	else {
+		// If the selected color is not the primary color, reduce saturation
+		if ((color == 0 && (c.r < c.g || c.r < c.b)) ||
+			(color == 1 && (c.g < c.r || c.g < c.b)) ||
+			(color == 2 && (c.b < c.r || c.b < c.g))) {
+			float avg = (c.r + c.g + c.b) / 3.0;
+			c.r = (c.r * saturation) + (avg * (1.0 - saturation));
+			c.g = (c.g * saturation) + (avg * (1.0 - saturation));
+			c.b = (c.b * saturation) + (avg * (1.0 - saturation));
+		}
+		
+		COLOR.rgb = c;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/active = false
+shader_param/saturation = 1.0
+shader_param/color = 0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 29.5, 30 )
@@ -14,6 +49,7 @@ extents = Vector2( 29.5, 30.25 )
 radius = 300.167
 
 [node name="Ranged_enemy" instance=ExtResource( 1 )]
+light_mask = 3
 scale = Vector2( 2, 2 )
 collision_mask = 6
 script = ExtResource( 2 )
@@ -21,7 +57,8 @@ speed = 10000.0
 color_number = 1
 
 [node name="Sprite" parent="." index="0"]
-texture = ExtResource( 3 )
+modulate = Color( 0, 1, 0.0156863, 1 )
+material = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2( 0, 1 )

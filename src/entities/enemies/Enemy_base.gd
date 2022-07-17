@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var Player = PlayerReference.get_player()
 onready var collision_shape = $CollisionShape2D.shape
 onready var knockback_timer = $Knockback_timer
+onready var sprite = $Sprite
+
 export (float) var speed
 export (bool) var protector
 export (int) var color_number
@@ -11,6 +13,9 @@ var color
 var movement_status = NORMAL
 var protections = 0
 var knockback_vector
+
+var enemies_to_int = {Constants.MELEE:0, Constants.RANGED:1, 
+	Constants.SUPPORT:2}
 
 signal enemy_died(enemy)
 
@@ -75,8 +80,19 @@ func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 func _on_Knockback_timer_timeout():
 	movement_status = NORMAL
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	movement_status = NORMAL
+
+
+func take_knockback(received_knockback_vector, knockback_time = 1):
+	knockback_timer.start(knockback_time)
+	movement_status = KNOCKBACK
+	knockback_vector = received_knockback_vector
+
+
+func set_highlighted_color(enemy_type):
+	sprite.material.set_shader_param("color", enemies_to_int[enemy_type])
 
 
 func _on_FallHitbox_area_entered(area):

@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 signal rolled()
+signal took_damage()
 signal health_changed(value)
 signal enemy_killed()
 signal advanced_combo(face)
@@ -44,6 +45,11 @@ onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
+onready var _light_behind = $Lights/Behind
+onready var _light_front = $Lights/Front
+onready var _light_left = $Lights/Left
+onready var _light_right = $Lights/Right
+
 onready var timers = {
 	"roll": PlayerTimer.new(ROLL_FRAMES),
 }
@@ -65,6 +71,8 @@ func _ready():
 	current_speed = walk_speed
 	inputHelper.init(self)
 	stateMachine.init(self)
+	
+	toggle_charge(true)
 	
 	if debug:
 		$CanvasLayer/Debug.visible = true
@@ -105,6 +113,7 @@ func take_damage():
 	_sprite.blink_anim()
 	_hurtbox.call_deferred("disabled", true)
 	_invincibleTimer.start(INVINCIBLE_DURATION)
+	emit_signal("took_damage")
 	
 	set_health(health - 1)
 	if health <= 0:
@@ -170,12 +179,19 @@ func _on_Roll_rolled(direction):
 		dieFaces.roll_down()
 	
 	current_enemy_type = dieFaces.get_current_enemy_type()
+	_light_front.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.FRONT)]
+	_light_behind.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.BEHIND)]
+	_light_left.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.LEFT)]
+	_light_right.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.RIGHT)]
 	emit_signal("rolled", direction)
 
 
 func _on_Charge_enemy_killed():
 	toggle_charge(true)
 	emit_signal("enemy_killed")
+	_hurtbox.call_deferred("disabled", true)
+	_invincibleTimer.start(INVINCIBLE_DURATION/2)
+	
 	
 	if dieFaces.get_current_face() == next_combo_face:
 		next_combo_face += 1
@@ -183,11 +199,11 @@ func _on_Charge_enemy_killed():
 			set_health(MAX_HEALTH)
 			emit_signal("triggered_combo")
 			next_combo_face = 1
-		else:
-			emit_signal("advanced_combo", next_combo_face)
 	
 	else:
 		next_combo_face = 1
+	
+	emit_signal("advanced_combo", next_combo_face)
 
 
 func _on_InvincibleTimer_timeout():
