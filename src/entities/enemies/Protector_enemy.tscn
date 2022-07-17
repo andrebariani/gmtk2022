@@ -1,8 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_base.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/circle.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/enemies/Protector_enemy.gd" type="Script" id=3]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=4]
+[ext_resource path="res://assets/chips/chip_colors.png" type="Texture" id=5]
+[ext_resource path="res://src/entities/enemies/RotateChip.tscn" type="PackedScene" id=6]
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/active = false
+shader_param/saturation = 0.35
+shader_param/color = 0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 30, 31 )
@@ -34,8 +44,26 @@ script = ExtResource( 3 )
 protector = true
 color_number = 2
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="Shadow" parent="." index="0"]
+position = Vector2( 0, 5 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 8 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
+hframes = 4
+frame = 2
+
+[node name="RollChip" parent="Sprite" index="0" instance=ExtResource( 6 )]
+use_parent_material = true
+position = Vector2( 0, -15 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
 shape = SubResource( 2 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 1 )
@@ -50,8 +78,9 @@ autoplay = "Shimmer"
 anims/Shimmer = SubResource( 7 )
 
 [node name="Protect_range" type="Area2D" parent="." index="5"]
+visible = false
 collision_layer = 0
-collision_mask = 2
+collision_mask = 512
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Protect_range" index="0"]
 position = Vector2( 1, 0 )

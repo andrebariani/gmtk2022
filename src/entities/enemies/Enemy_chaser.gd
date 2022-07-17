@@ -1,4 +1,5 @@
 extends "res://src/entities/enemies/Enemy_base.gd"
+class_name EnemyChaser
 
 func movimentation(delta):
 	if movement_status == NORMAL:
