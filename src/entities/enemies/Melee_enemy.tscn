@@ -29,6 +29,7 @@ speed = 15000.0
 charge_mult = 7.0
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 0, 0, 1 )
 material = SubResource( 7 )
 
 [node name="CollisionShape2D" parent="." index="1"]

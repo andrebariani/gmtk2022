@@ -26,6 +26,7 @@ speed = 10000.0
 color_number = 1
 
 [node name="Sprite" parent="." index="0"]
+modulate = Color( 0, 1, 0.0156863, 1 )
 material = SubResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="1"]

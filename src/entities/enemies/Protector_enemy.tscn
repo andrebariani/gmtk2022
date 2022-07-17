@@ -18,6 +18,9 @@ script = ExtResource( 3 )
 protector = true
 color_number = 2
 
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 0, 0.368627, 1, 1 )
+
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource( 2 )
 
