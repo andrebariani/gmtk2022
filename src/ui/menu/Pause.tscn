@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/ui/menu/MenuButton.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/menu/HSlider.gd" type="Script" id=2]
 [ext_resource path="res://src/ui/menu/PauseMenu.gd" type="Script" id=3]
 [ext_resource path="res://assets/sprites/ui/MenuButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://src/ui/menu/MenuFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/ui/menu/volume_theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/sprites/ui/MenuButton.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/ui/MenuButtonPressed.png" type="Texture" id=10]
 
@@ -184,6 +185,7 @@ tracks/1/keys = {
 
 [node name="Pause" type="ColorRect"]
 pause_mode = 2
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -194,7 +196,6 @@ __meta__ = {
 }
 
 [node name="PauseMenu" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
@@ -322,6 +323,7 @@ margin_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 170, 0 )
+theme = ExtResource( 6 )
 max_value = 40.0
 value = 20.0
 script = ExtResource( 2 )
@@ -354,6 +356,7 @@ margin_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 170, 0 )
+theme = ExtResource( 6 )
 max_value = 40.0
 value = 20.0
 script = ExtResource( 2 )
