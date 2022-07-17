@@ -19,6 +19,7 @@ func begin():
 	e.has_dir_control = false
 	e.hitbox.monitoring = true
 	starting_load = e.load_amount
+	e.toggle_charge(false)
 
 
 func run(delta):
@@ -40,7 +41,6 @@ func before_end(_next_state: String):
 	e.hitbox.set_deferred("monitoring", false)
 	e.take_knockback(look_vector * 1500)
 	
-	e.toggle_charge(false)
 	timer.start()
 
 

@@ -38,7 +38,8 @@ func _on_Player_rolled(_direction):
 		faces.get_face(Constants.LEFT), 
 		faces.get_face(Constants.RIGHT),
 		faces.get_face(Constants.DOWN))
-	shaders.set_current_color(faces.get_current_enemy_type())
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		enemy.set_highlighted_color(faces.get_current_enemy_type())
 	
 	camera.shake_camera(80)
 

@@ -55,36 +55,36 @@ __meta__ = {
 }
 
 [node name="Health1" type="TextureRect" parent="Healthbar/Slots"]
-margin_left = 16.0
-margin_top = 51.0
-margin_right = 49.0
-margin_bottom = 62.0
+margin_left = -4.0
+margin_top = 24.0
+margin_right = 29.0
+margin_bottom = 35.0
 rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 32, 32 )
+rect_pivot_offset = Vector2( 16, 6 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Health2" type="TextureRect" parent="Healthbar/Slots"]
-margin_left = 72.0
-margin_top = 51.0
-margin_right = 105.0
-margin_bottom = 62.0
+margin_left = 54.0
+margin_top = 24.0
+margin_right = 87.0
+margin_bottom = 35.0
 rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 32, 32 )
+rect_pivot_offset = Vector2( 16, 6 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Health3" type="TextureRect" parent="Healthbar/Slots"]
-margin_left = 128.0
-margin_top = 51.0
-margin_right = 161.0
-margin_bottom = 62.0
+margin_left = 114.0
+margin_top = 24.0
+margin_right = 147.0
+margin_bottom = 35.0
 rect_scale = Vector2( 2, 2 )
-rect_pivot_offset = Vector2( 32, 32 )
+rect_pivot_offset = Vector2( 16, 6 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

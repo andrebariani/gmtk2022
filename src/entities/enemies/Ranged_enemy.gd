@@ -4,6 +4,8 @@ var aiming = false
 var in_range = false
 const BULLET_WIDTH = Vector2(10,0)
 
+export var TIME_TO_SHOOT = 2
+
 # onready var shoot_animation = $ShootAnimation
 onready var Bullet = preload("res://src/entities/enemies/Bullet.tscn")
 
@@ -22,7 +24,7 @@ func on_process(delta):
 	elif in_range:
 		if is_path_to_player_free():
 			movement_status = STOP
-			$Timer_shoot.start()
+			$Timer_shoot.start(TIME_TO_SHOOT)
 			aiming = true
 
 

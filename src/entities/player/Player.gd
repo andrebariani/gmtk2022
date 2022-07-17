@@ -71,6 +71,8 @@ func _ready():
 	inputHelper.init(self)
 	stateMachine.init(self)
 	
+	toggle_charge(true)
+	
 	if debug:
 		$CanvasLayer/Debug.visible = true
 		$DieSide.visible = true
@@ -185,6 +187,9 @@ func _on_Roll_rolled(direction):
 func _on_Charge_enemy_killed():
 	toggle_charge(true)
 	emit_signal("enemy_killed")
+	_hurtbox.call_deferred("disabled", true)
+	_invincibleTimer.start(INVINCIBLE_DURATION/2)
+	
 	
 	if dieFaces.get_current_face() == next_combo_face:
 		next_combo_face += 1
@@ -192,11 +197,11 @@ func _on_Charge_enemy_killed():
 			set_health(MAX_HEALTH)
 			emit_signal("triggered_combo")
 			next_combo_face = 1
-		else:
-			emit_signal("advanced_combo", next_combo_face)
 	
 	else:
 		next_combo_face = 1
+	
+	emit_signal("advanced_combo", next_combo_face)
 
 
 func _on_InvincibleTimer_timeout():
