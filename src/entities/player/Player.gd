@@ -44,6 +44,11 @@ onready var _hurtbox = $Hurtbox
 onready var _state_debug = $CanvasLayer/Debug/State
 onready var _die_side_debug = $DieSide
 
+onready var _light_behind = $Lights/Behind
+onready var _light_front = $Lights/Front
+onready var _light_left = $Lights/Left
+onready var _light_right = $Lights/Right
+
 onready var timers = {
 	"roll": PlayerTimer.new(ROLL_FRAMES),
 }
@@ -170,6 +175,10 @@ func _on_Roll_rolled(direction):
 		dieFaces.roll_down()
 	
 	current_enemy_type = dieFaces.get_current_enemy_type()
+	_light_front.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.FRONT)]
+	_light_behind.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.BEHIND)]
+	_light_left.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.LEFT)]
+	_light_right.color = Constants.enemy_colors[dieFaces.get_enemy_type(Constants.RIGHT)]
 	emit_signal("rolled", direction)
 
 
