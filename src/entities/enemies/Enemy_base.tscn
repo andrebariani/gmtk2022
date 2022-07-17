@@ -40,7 +40,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, true ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("CollisionShape2D:disabled")
@@ -190,6 +190,12 @@ script = ExtResource( 1 )
 dust = ExtResource( 6 )
 explosion = ExtResource( 7 )
 
+[node name="Shadow" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, 33 )
+scale = Vector2( 1, 0.1 )
+texture = ExtResource( 4 )
+
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 4 )
 texture = ExtResource( 3 )
@@ -210,11 +216,6 @@ one_shot = true
 anims/GOING_DOWN = SubResource( 1 )
 anims/RESET = SubResource( 2 )
 
-[node name="Shadow" type="Sprite" parent="."]
-position = Vector2( 0, 33 )
-scale = Vector2( 1, 0.1 )
-texture = ExtResource( 4 )
-
 [node name="FallHitbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 24
@@ -222,6 +223,7 @@ collision_mask = 24
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FallHitbox"]
 position = Vector2( 0, 28 )
 shape = SubResource( 3 )
+disabled = true
 
 [connection signal="timeout" from="Knockback_timer" to="." method="_on_Knockback_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

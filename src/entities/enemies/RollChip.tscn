@@ -1,6 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/chips/chip_enemy_roll.png" type="Texture" id=1]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = ExtResource( 2 )
+shader_param/active = false
+shader_param/saturation = 1.0
+shader_param/color = 0
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -27,5 +34,6 @@ animations = [ {
 } ]
 
 [node name="RollChip" type="AnimatedSprite"]
+material = SubResource( 6 )
 frames = SubResource( 5 )
 frame = 3

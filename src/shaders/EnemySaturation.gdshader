@@ -5,7 +5,8 @@ uniform float saturation = 1.0;
 uniform int color = 0; // 0 for red, 1 for green, 2 for blue
 
 void fragment() {
-	vec3 c = texture(TEXTURE, UV).rgb;
+	vec4 tex = texture(TEXTURE, UV);
+	vec3 c = tex.rgb;
 	
 	if (active) {
 		float avg = (c.r + c.g + c.b) / 3.0;
@@ -27,4 +28,5 @@ void fragment() {
 		
 		COLOR.rgb = c;
 	}
+	COLOR.a = tex.a; 
 }

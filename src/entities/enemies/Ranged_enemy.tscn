@@ -1,13 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/entities/enemies/Enemy_chaser.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/enemies/Ranged_enemy.gd" type="Script" id=2]
+[ext_resource path="res://src/shaders/EnemySaturation.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/chips/chip_colors.png" type="Texture" id=4]
+[ext_resource path="res://assets/chips/chip.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/active = false
+shader_param/saturation = 0.35
+shader_param/color = 0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 29.5, 30 )
+extents = Vector2( 22, 30 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 29.5, 30.25 )
+extents = Vector2( 21, 30.25 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 300.167
@@ -15,20 +25,54 @@ radius = 300.167
 [node name="Ranged_enemy" instance=ExtResource( 1 )]
 light_mask = 3
 scale = Vector2( 2, 2 )
+collision_layer = 514
 collision_mask = 6
 script = ExtResource( 2 )
 speed = 10000.0
 color_number = 1
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, 1 )
+[node name="Shadow" parent="." index="0"]
+position = Vector2( 0, 19 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 4 )
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="Sprite2" type="Sprite" parent="Sprite" index="0"]
+use_parent_material = true
+position = Vector2( 0.5, -6 )
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="Sprite3" type="Sprite" parent="Sprite" index="1"]
+use_parent_material = true
+position = Vector2( 0.5, -13.5 )
+texture = ExtResource( 4 )
+hframes = 4
+frame = 1
+
+[node name="BulletSprite" type="Sprite" parent="Sprite" index="2"]
+use_parent_material = true
+position = Vector2( 2.5, -21 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+position = Vector2( -0.5, 1 )
 shape = SubResource( 2 )
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2( -0.5, 1.25 )
 shape = SubResource( 3 )
 
 [node name="Range" type="Area2D" parent="." index="4"]
+visible = false
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]

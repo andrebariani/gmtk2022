@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/entities/enemies/Bullet.gd" type="Script" id=1]
 [ext_resource path="res://assets/chips/chip.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/enemies/DamageDealer.tres" type="Material" id=3]
+[ext_resource path="res://src/entities/enemies/RollChip.tscn" type="PackedScene" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 18, 8.5 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 22.0
 
 [node name="Bullet" type="KinematicBody2D"]
 collision_layer = 0
@@ -13,15 +14,18 @@ collision_mask = 0
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 material = ExtResource( 3 )
 texture = ExtResource( 2 )
+
+[node name="RollChip" parent="." instance=ExtResource( 4 )]
+playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 1, -0.5 )
 shape = SubResource( 1 )
 
 [node name="Life_timer" type="Timer" parent="."]
